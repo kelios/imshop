@@ -1,0 +1,43 @@
+<!-- Shop hooks file -->
+<hook id="system_init_completed">
+<![CDATA[
+if (!defined('DS'))
+{
+    define('DS', DIRECTORY_SEPARATOR);
+}
+// Full path to shop module dir with ending slash.
+define('SHOP_DIR', PUBPATH.'/application/modules/shop/');
+
+// Include Shop core.
+require_once(SHOP_DIR . 'classes/ShopCore.php');
+
+// Register shop autoloader.
+spl_autoload_unregister(array('ShopCore','autoload'));
+spl_autoload_register(array('ShopCore','autoload'));
+
+// Diable CSRF library form web money service
+$CI =& get_instance();
+if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='cart' && $CI->uri->segment(3)=='view' && $_GET['result']=='true' && $_GET['pm'] > 0)
+{
+    define('ICMS_DISBALE_CSRF',true);
+}
+
+]]>
+</hook>
+
+<hook id="admin_tpl_desktop_head">
+<![CDATA[
+// Register shop javascript files.
+echo '<script type="text/javascript" src="/application/modules/shop/admin/templates/assets/shopFunctions.js"></script>'."\n";
+echo '<link rel="stylesheet" href="/application/modules/shop/admin/templates/assets/shopAdmin.css" type="text/css" media="screen" />'."\n";
+
+echo '<script type="text/javascript" src="/application/modules/shop/admin/templates/assets/SqueezeBox/SqueezeBox.js"></script>'."\n";
+echo '<link rel="stylesheet" href="/application/modules/shop/admin/templates/assets/SqueezeBox/assets/SqueezeBox.css" type="text/css" media="screen" />'."\n\n";
+]]>
+</hook>
+
+<hook id="core_set_tpl_data">
+<![CDATA[
+    ShopCore::initEnviroment();
+]]>
+</hook>

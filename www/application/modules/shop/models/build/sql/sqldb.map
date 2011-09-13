@@ -1,0 +1,4 @@
+# Sqlfile -> Database map
+schema.sql=Shop
+test-categories.sql=Shop
+test-currencies.sql=Shop

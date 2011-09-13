@@ -1,0 +1,74 @@
+<ul>
+	<li><a href="#" onClick="return false;">Товары</a>
+		<ul>
+			<li><a href="#" onClick="ajaxShop('products/create'); return false;">Создать</a></li>
+			<li><a href="#" onClick="ajaxShop('properties/index'); return false;">Свойства товаров</a></li>
+			<li><a href="#" onClick="ajaxShop('search/index'); return false;">Поиск</a></li>
+		</ul>
+	</li>
+	<li><a href="#" onClick="ajaxShop('orders/index'); return false;">Заказы</a></li>
+	<li><a href="#" onClick="return false;">Категории</a>
+		<ul>
+			<li><a href="#" onClick="ajaxShop('categories/create'); return false;">Создать</a></li>
+			<li><a href="#" onClick="ajaxShop('categories/c_list'); return false;">Редактировать</a></li>
+		</ul>
+	</li>
+    <li><a href="#" onClick="return false;">Настройки</a>
+    
+    <ul>
+        <li><a href="#" onClick="return false;" class="arrow-right">Способы доставки</a>
+            <ul>
+                <li><a href="#" onClick="ajaxShop('deliverymethods/create'); return false;">Создать</a></li>
+                <li><a href="#" onClick="ajaxShop('deliverymethods/c_list'); return false;">Редактировать</a></li>
+            </ul>
+        </li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Способы Оплаты</a>
+            <ul>
+                <li><a href="#" onClick="ajaxShop('paymentmethods/create'); return false;">Создать</a></li>
+                <li><a href="#" onClick="ajaxShop('paymentmethods/index'); return false;">Редактировать</a></li>
+            </ul>
+        </li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Бренды</a>
+            <ul>
+                <li><a href="#" onClick="ajaxShop('brands/create'); return false;">Создать</a></li>
+                <li><a href="#" onClick="ajaxShop('brands/c_list'); return false;">Редактировать</a></li>
+            </ul>
+        </li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Валюты</a>
+            <ul>
+                <li><a href="#" onClick="ajaxShop('currencies/create'); return false;">Создать</a></li>
+                <li><a href="#" onClick="ajaxShop('currencies/index'); return false;">Редактировать</a></li>
+            </ul>
+        </li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Склады</a>
+            <ul>
+                <li><a href="#" onClick="ajaxShop('warehouses/create'); return false;">Создать</a></li>
+                <li><a href="#" onClick="ajaxShop('warehouses/index'); return false;">Редактировать</a></li>
+            </ul>
+        </li>
+    </ul>
+    
+    </li>
+
+    <li><a href="#" onClick="return false;">Система</a>
+    <ul>
+        <li><a href="#" onClick="ajaxShop('settings/index'); return false;">Настройки</a></li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Автоматизация</a>
+		    <ul>
+			    <li><a href="#" onClick="ajaxShop('system/import'); return false;">Импорт</a></li>
+			    <li><a href="#" onClick="ajaxShop('system/export'); return false;">Экспорт</a></li>
+		    </ul>
+        </li>
+        <li><a href="#" onClick="return false;" class="arrow-right">Скидки</a>
+		    <ul>
+			    <li><a href="#" onClick="ajaxShop('discounts/create'); return false;">Создать</a></li>
+			    <li><a href="#" onClick="ajaxShop('discounts/index'); return false;">Редактировать</a></li>
+		    </ul>
+        </li>
+    </ul>
+	</li>
+
+    <li><a href="/" target="shop_ViewSite">Посмотреть сайт</a>
+    <li><a href="/admin/logout">Выход</a>
+
+</ul>
