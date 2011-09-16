@@ -1,29 +1,27 @@
-<form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}" enctype="multipart/form-data" id="image_upload_form" style="width:100%;">
-<input type="hidden" name="redirect" value="{echo ShopCore::$_GET['redirect']}"/>
+<form method="post" action="<?php if(isset($BASE_URL)){ echo $BASE_URL; } ?>admin/pages/update/<?php if(isset($update_page_id)){ echo $update_page_id; } ?>" enctype="multipart/form-data" id="image_upload_form" style="width:100%;">
+<input type="hidden" name="redirect" value="<?php echo ShopCore::$_GET['redirect'] ?>"/>
 <input type="hidden" name="deleteMainImage" id="deleteMainImage" value="0"/>
  <input type="hidden" name="deleteSmallImage" id="deleteSmallImage" value="0"/>
 
 
 <div style="float:left; position:absolute;padding:3px;margin-left:350px;">
-    <input type="button" title="Просмотр страницы на сайте" style="cursor:pointer;border:0px;width:16px;height:16px;background: transparent url({$THEME}/images/page_view.png) no-repeat;margin-right:10px;" value=" " onclick="
-    {literal}
-    new MochaUI.Window({
-    {/literal}
-					id: 'page_{$update_page_id}',
-					title: '{site_url($category.path_url . $url)}',
+    <input type="button" title="Просмотр страницы на сайте" style="cursor:pointer;border:0px;width:16px;height:16px;background: transparent url(<?php if(isset($THEME)){ echo $THEME; } ?>/images/page_view.png) no-repeat;margin-right:10px;" value=" " onclick="
+    new MochaUI.Window({ 
+    
+					id: 'page_<?php if(isset($update_page_id)){ echo $update_page_id; } ?>',
+					title: '<?php  echo site_url ( $category['path_url']  . $url);  ?>',
                     loadMethod: 'iframe',
                     maximizable: true,
                     resizable : false,
                     minimizable : false,
-					contentURL: '{site_url($category.path_url . $url)}',
+					contentURL: '<?php  echo site_url ( $category['path_url']  . $url);  ?>',
 					type: 'window',
 					width: 500,
 					height: 500
-				{literal}
-                });
-                {/literal}
+                 });
+                
 
-    MochaUI.Desktop.maximizeWindow( $('page_{$update_page_id}') ); 
+    MochaUI.Desktop.maximizeWindow( $('page_<?php if(isset($update_page_id)){ echo $update_page_id; } ?>') ); 
 
     return false;
     " />
@@ -33,22 +31,22 @@
 	<h4>Содержание</h4>
 	<div id="text_id2" style="padding-left:10px;">
 
-        { $this->template_vars['page_editing'] = TRUE }
+        <?php  $this->template_vars['page_editing'] = TRUE  ?>
 
         <div style="padding:3px;"></div>
         <div id="fast_category_list" style="float:left;">
             Категория: <select name="category" onchange="change_comments_status();" id="category_selectbox">
                 <option value="0">Нет</option>
-                   { $this->view("cats_select.tpl", $this->template_vars ) }
+                   <?php  $this->view("cats_select.tpl", $this->template_vars )  ?>
                 </select>
         </div>
 
-        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
+        <img  src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
 
 		<div class="form_overflow" style="padding:5px;"></div>
 
 		Заголовок:
-        <input type="text" name="page_title" value="{htmlspecialchars($title)}" id="page_title_u" class="textbox_long" /> 
+        <input type="text" name="page_title" value="<?php  echo htmlspecialchars ($title);  ?>" id="page_title_u" class="textbox_long" /> 
 		<div class="form_overflow"></div>
 
 <!-- Right block with main images -->
@@ -60,11 +58,11 @@
                         <tr>
                             <td>
    
-                                {if $b_picture == true}
-                                <a href="/uploads/shop/{echo $page_id}_Page.jpg?{rand(1,9999)}" id="mainImagePrevLink" class="boxed" rel="{literal}{handler:'image'}{/literal}">
-                                    <img src="/uploads/shop/{echo $page_id}_Page.jpg?{rand(1,9999)}" style="cursor:pointer;" width="90px" />
+                                <?php if($b_picture == true): ?>
+                                <a href="/uploads/shop/<?php echo $page_id ?>_Page.jpg?<?php  echo rand (1,9999);  ?>" id="mainImagePrevLink" class="boxed" rel="{ handler:'image' }">
+                                    <img src="/uploads/shop/<?php echo $page_id ?>_Page.jpg?<?php  echo rand (1,9999);  ?>" style="cursor:pointer;" width="90px" />
                                 </a>
-                                {/if}
+                                <?php endif; ?>
 
 
                             </td>
@@ -78,10 +76,10 @@
                <div style="color:#fff;" id="mainImageName">Выбрать файл</div>
                <input type="file" onchange="$('mainImageName').set('html',document.getElementById('mainPhoto').value);" id="mainPhoto" name="mainPhoto" size="1" />
                </div>
-                {if $b_picture == true}
-                    <img src="{$THEME}/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
+                <?php if($b_picture == true): ?>
+                    <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
                     onclick="$('deleteMainImage').value=1; $('mainImagePrevLink').destroy(); "/>
-                {/if}
+                <?php endif; ?>
 
                  <input type="text" name="" value="http://" class="textbox_long" style="margin-left:5px;margin-top:5px;" />
                 <div style="margin-left:10px;margin-top:5px;">
@@ -95,12 +93,12 @@
                     <table border="0" cellspacing="0" cellpadding="0" height="90px" width="90px">
                         <tr>
                             <td>
-                                {if $bsmall_picture == true}
-                                    <a href="/uploads/shop/{echo $page_id}_Pagesmall.jpg?{rand(1,9999)}" id="smallImagePrevLink" class="boxed" rel="{literal}{handler:'image'}{/literal}">
-                                    <img src="/uploads/shop/{echo $page_id}_Pagesmall.jpg?{rand(1,9999)}" style="cursor:pointer;" width="90px" />
+                                <?php if($bsmall_picture == true): ?>
+                                    <a href="/uploads/shop/<?php echo $page_id ?>_Pagesmall.jpg?<?php  echo rand (1,9999);  ?>" id="smallImagePrevLink" class="boxed" rel="{ handler:'image' }">
+                                    <img src="/uploads/shop/<?php echo $page_id ?>_Pagesmall.jpg?<?php  echo rand (1,9999);  ?>" style="cursor:pointer;" width="90px" />
                           
                                 </a>
-                                {/if}
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </table>
@@ -111,10 +109,10 @@
                <div style="color:#fff;" id="smallImageName">Выбрать файл</div>
                <input type="file" name="smallPhoto" onchange="$('smallImageName').set('html',document.getElementById('smallPhoto').value);" size="1" id="smallPhoto"/>
                </div>
-                {if $bsmall_picture == true}
-                    <img src="{$THEME}/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
+                <?php if($bsmall_picture == true): ?>
+                    <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
                     onclick="$('deleteSmallImage').value=1; $('smallImagePrevLink').destroy(); "/>
-                {/if}
+                <?php endif; ?>
                 <input type="text" name="" value="http://" class="textbox_long" style="margin-left:5px;margin-top:5px;" />
             </div>
 
@@ -122,61 +120,59 @@
  <div style="clear:both;"></div>
  
         <div id="page_header"> Предварительное содержание:</div>
-         {if $orig_page}
-            {literal}
+         <?php if($orig_page): ?>
                 <script type="text/javascript">
                 var prevSlide = new Fx.Slide('orig_prev_text');
                 prevSlide.hide();
 
-                $('toggle_prev').addEvent('click', function(e){
+                $('toggle_prev').addEvent('click', function(e){ 
                     e = new Event(e);
                     prevSlide.toggle();
                     e.stop();
-                });
+                 });
                 </script>
-            {/literal}
+            
          <div style="width:75%" id="res1">
             <div id="handler1" style="float:right; height:20px;">
-                <img src="{$THEME}/images/arrow-up-right.png" id="toggle_prev" />
+                <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-up-right.png" id="toggle_prev" />
             </div>
             <div  id="orig_prev_text">
-                {$text = str_replace('&nbsp', ' ', $orig_page.prev_text)}
-                {//$text = strip_tags($text)}
-                {$text}
+                <?php  $text = str_replace('&nbsp', ' ',  $orig_page['prev_text'] )  ?>
+                <?php //$text = strip_tags($text) ?>
+                <?php if(isset($text)){ echo $text; } ?>
             </div>
          </div>
-         {/if}
+         <?php endif; ?>
 		<textarea id="prev_text" class="mceEditor" name="prev_text" rows="15" cols="180"  style="width:700px;height:400px;">
-		    {encode($prev_text)}
+		    <?php  echo encode ($prev_text);  ?>
 		</textarea>
 
         <div id="page_header"> Полное содержание:</div>
-         {if $orig_page}
-            {literal}
+         <?php if($orig_page): ?>
                 <script type="text/javascript">
                 var fullSlide = new Fx.Slide('orig_full_text');
                 fullSlide.hide();
 
-                $('toggle_full').addEvent('click', function(e){
+                $('toggle_full').addEvent('click', function(e){ 
                     e = new Event(e);
                     fullSlide.toggle();
                     e.stop();
-                });
+                 });
                 </script>
-            {/literal}
+            
          <div style="width:75%;" id="res1">
             <div id="handler1" style="float:right; height:20px;">
-                <img src="{$THEME}/images/arrow-up-right.png" id="toggle_full" />
+                <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-up-right.png" id="toggle_full" />
             </div>
             <div  id="orig_full_text" >
-                {$text = str_replace('&nbsp', ' ', $orig_page.full_text)}
-                {//$text = strip_tags($text)}
-                {$text} 
+                <?php  $text = str_replace('&nbsp', ' ',  $orig_page['full_text'] )  ?>
+                <?php //$text = strip_tags($text) ?>
+                <?php if(isset($text)){ echo $text; } ?> 
             </div>
          </div>
-         {/if}
+         <?php endif; ?>
 		<textarea id="full_text" class="mceEditor" name="full_text" rows="15" cols="180" style="width:700px;height:400px;">
-		    {encode($full_text)}
+		    <?php  echo encode ($full_text);  ?>
 		</textarea>
 
 		<div style="height:25px;"></div>
@@ -186,31 +182,31 @@
 	<div style="padding:8px;">
 
 		<div class="form_text">URL:</div>
-		<div class="form_input"><input type="text" name="page_url" {if $lang_alias != 0} disabled="disabled" {/if} value="{$url}" id="page_url" class="textbox_long" /> 
-        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="Транслитерация заголовка." /> 
+		<div class="form_input"><input type="text" name="page_url" <?php if($lang_alias != 0): ?> disabled="disabled" <?php endif; ?> value="<?php if(isset($url)){ echo $url; } ?>" id="page_url" class="textbox_long" /> 
+        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/translit.png" width="16" height="16" title="Транслитерация заголовка." /> 
         <div class="lite">(только латинские символы)</div>
         </div>
         <div class="form_overflow"></div>
 
 		<div class="form_text">Теги:</div>
-		<div class="form_input"><input type="text" name="search_tags" value="{foreach $tags as $tag}{$tag.value},{/foreach}" id="tags" class="textbox_long" /></div>
+		<div class="form_input"><input type="text" name="search_tags" value="<?php if(is_true_array($tags)){ foreach ($tags as $tag){ ?><?php  echo $tag['value'];  ?>,<?php }} ?>" id="tags" class="textbox_long" /></div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text">Meta title:</div>
-		<div class="form_input"><input type="text" name="meta_title" value="{$meta_title}" class="textbox_long" /></div>
+		<div class="form_input"><input type="text" name="meta_title" value="<?php if(isset($meta_title)){ echo $meta_title; } ?>" class="textbox_long" /></div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text">Meta description:</div>
 		<div class="form_input">
-		<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="48">{$description}</textarea>
-		<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="Сгенерировать описание" style="cursor:pointer" width="16" height="16" />
+		<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="48"><?php if(isset($description)){ echo $description; } ?></textarea>
+		<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-down.png" title="Сгенерировать описание" style="cursor:pointer" width="16" height="16" />
 		</div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text">Meta keywords:</div>
 		<div class="form_input">
-			<textarea name="page_keywords" id="page_keywords" class="textarea" rows="8" cols="28">{$keywords}</textarea>
-			<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" width="16" height="16" title="Сгенерировать ключевые слова" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
+			<textarea name="page_keywords" id="page_keywords" class="textarea" rows="8" cols="28"><?php if(isset($keywords)){ echo $keywords; } ?></textarea>
+			<img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-down.png" style="cursor:pointer" width="16" height="16" title="Сгенерировать ключевые слова" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
 
 			<div style="max-width:600px" id="keywords_list">
 
@@ -220,27 +216,27 @@
 
 		<div class="form_text">Главный шаблон:</div>
 		<div class="form_input">
-			<input type="text" name="main_tpl" value="{$main_tpl}" class="textbox_long" /> .tpl
+			<input type="text" name="main_tpl" value="<?php if(isset($main_tpl)){ echo $main_tpl; } ?>" class="textbox_long" /> .tpl
 			<div class="lite">По умолчанию  main.tpl</div>
 		</div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text">Шаблон Страницы:</div>
 		<div class="form_input">
-			<input type="text" name="full_tpl" value="{$full_tpl}" class="textbox_long" /> .tpl
+			<input type="text" name="full_tpl" value="<?php if(isset($full_tpl)){ echo $full_tpl; } ?>" class="textbox_long" /> .tpl
 			<div class="lite">По умолчанию  page_full.tpl</div>
 		</div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text"></div>
 		<div class="form_input">
-			<label><input type="checkbox" name="comments_status" value="1" {if $comments_status == 1} checked="checked" {/if} /> Разрешить комментирование</label>
+			<label><input type="checkbox" name="comments_status" value="1" <?php if($comments_status == 1): ?> checked="checked" <?php endif; ?> /> Разрешить комментирование</label>
 		</div>
 		<div class="form_overflow"></div>
 
 	</div>
 
-    {($hook = get_hook('admin_tpl_edit_page')) ? eval($hook) : NULL;}
+    <?php ($hook = get_hook('admin_tpl_edit_page')) ? eval($hook) : NULL; ?>
 
 </div>
 
@@ -255,9 +251,9 @@
         <p style="padding-left:15px;">
         <b>Статус публикации: </b><br />
             <select name="post_status" id="post_status">
-                <option value="publish" {if $post_status == "publish"} selected="selected" {/if} >Опубликовано</option>
-                <option value="pending" {if $post_status == "pending"} selected="selected" {/if} >Ожидает одобрения</option>
-                <option value="draft" {if $post_status == "draft"} selected="selected" {/if} >Не опубликовано</option>
+                <option value="publish" <?php if($post_status == "publish"): ?> selected="selected" <?php endif; ?> >Опубликовано</option>
+                <option value="pending" <?php if($post_status == "pending"): ?> selected="selected" <?php endif; ?> >Ожидает одобрения</option>
+                <option value="draft" <?php if($post_status == "draft"): ?> selected="selected" <?php endif; ?> >Не опубликовано</option>
             </select>
         </p>
 
@@ -265,15 +261,15 @@
 	
 	<p style="padding-left:15px;">
 	    <b>Дата и время создания:</b>
-		<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" class="textbox_short" /></p>
-		<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="textbox_short" /></p>
+		<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="<?php if(isset($create_date)){ echo $create_date; } ?>" type="text" class="textbox_short" /></p>
+		<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="<?php if(isset($create_time)){ echo $create_time; } ?>" class="textbox_short" /></p>
 	    </p>
 	<hr />
 
         <p style="padding-left:15px;">
             <b>Дата и время публикации:</b>
-            <p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" class="textbox_short" /></p>
-            <p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="textbox_short" /></p>
+            <p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="<?php if(isset($publish_date)){ echo $publish_date; } ?>" type="text" class="textbox_short" /></p>
+            <p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="<?php if(isset($publish_time)){ echo $publish_time; } ?>" class="textbox_short" /></p>
         </p>
 
         <hr />
@@ -281,45 +277,43 @@
         <p style="padding-left:15px">
         <b>Доступ:</b><br />
             <select multiple="multiple" name="roles[]">
-                <option value="0" {$all_selected} >Все</option>
-                {foreach $roles as $role}
-                  <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
-                {/foreach}
+                <option value="0" <?php if(isset($all_selected)){ echo $all_selected; } ?> >Все</option>
+                <?php if(is_true_array($roles)){ foreach ($roles as $role){ ?>
+                  <option <?php  echo $role['selected'];  ?> value="<?php  echo $role['id'];  ?>"><?php  echo $role['alt_name'];  ?></option>
+                <?php }} ?>
             </select>
         </p>
 
         <hr />
 
         <div style="padding-left:15px;">
-            {if $show_langs == "1"}
+            <?php if($show_langs == "1"): ?>
             <b>Редактировать на языке:</b>
                 <div style="padding-left:15px;">
                     <ul>
-                        {foreach $langs as $lang}
-                        <li><a {if $page_lang == $lang['id']} style="font-weight:bold;" {/if} href="#" onclick="change_edit_lang('{$page_id}','{$lang.id}'); return false;">{$lang.lang_name}</a></li>
-                        {/foreach}
+                        <?php if(is_true_array($langs)){ foreach ($langs as $lang){ ?>
+                        <li><a <?php if($page_lang == $lang['id']): ?> style="font-weight:bold;" <?php endif; ?> href="#" onclick="change_edit_lang('<?php if(isset($page_id)){ echo $page_id; } ?>','<?php  echo $lang['id'];  ?>'); return false;"><?php  echo $lang['lang_name'];  ?></a></li>
+                        <?php }} ?>
                     </ul>
                 </div>
-            {/if}
+            <?php endif; ?>
         </div>
 
-        {($hook = get_hook('admin_tpl_edit_page_side_bar')) ? eval($hook) : NULL;}
+        <?php ($hook = get_hook('admin_tpl_edit_page_side_bar')) ? eval($hook) : NULL; ?>
 
     </div>
 </div>
 
 <div class="footer_block" align="right">
     <input type="submit" id="footerButton" name="_update" value="Сохранить" class="active"   />
-    <input type="submit" class="button_red" value="Удалить" onclick="confirm_delete_page('{$update_page_id}'); return false;" />
+    <input type="submit" class="button_red" value="Удалить" onclick="confirm_delete_page('<?php if(isset($update_page_id)){ echo $update_page_id; } ?>'); return false;" />
 </div>
 
-{form_csrf()}
+<?php  echo form_csrf ();  ?>
  <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;display:none;"></iframe>
 </form>>
-
-{literal}
     <style>
-    #res1 {
+    #res1 { 
         background:#EEEEEE none repeat scroll 0 0;
         border-color:#F5F5F5 #DDDDDD #DDDDDD #F5F5F5;
         border-style:solid;
@@ -331,36 +325,36 @@
         overflow:auto;
         padding:2px 5px;
         position:relative;
-    }
+     }
     </style>
 
 	<script type="text/javascript">
-		window.addEvent('domready', function() {
-			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
-			create_date_cal = new Calendar({ create_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
+		window.addEvent('domready', function() { 
+			pub_date_cal = new Calendar({  publish_date: 'Y-m-d'  }, {  direction: .0, tweak: { x: -150, y: 22 }  });
+			create_date_cal = new Calendar({  create_date: 'Y-m-d'  }, {  direction: .0, tweak: { x: -150, y: 22 }  });
 
             var sp_param = Cookie.read('sidepanel');
             if (sp_param == 'show')
-            {
+            { 
                 document.getElementById('sidebar1').style.display='none';
                 document.getElementById('sidebar2').style.display='block';
-            }
+             }
 
            
-			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
+			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', { 
     			'postVar': 'search_tags'
-			});
+			 });
 
-			var cms_tabs = new SimpleTabs('tabs-block', {
+			var cms_tabs = new SimpleTabs('tabs-block', { 
 			selector: 'h4'
-			});
+			 });
 
             load_editor();
 
                 
 	    
-	    function load_editor2()        {
-                    tinyMCE.init({
+	    function load_editor2()        { 
+                    tinyMCE.init({ 
                         mode : 'specific_textareas',
                         editor_selector : 'mceEditor2',
                         language: 'ru',
@@ -384,40 +378,41 @@
                         force_br_newlines : true,
                         force_p_newlines : false,
                         relative_urls : false,
-                        setup : function(ed) {
-                            ed.addButton('imagebox', {
+                        setup : function(ed) { 
+                            ed.addButton('imagebox', { 
                                 title : 'Imagebox',
                                 image : '/application/modules/imagebox/templates/images/button.png',
-                                onclick : function() {
+                                onclick : function() { 
                                     show_main_window();
-                                    }
-                                    });
-                            },
-                            });
-                    };
+                                     }
+                                     });
+                             },
+                             });
+                     };
 		    
 		var editor_loaded = false;
 		
-		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
+		$('tabs-block').getElements('a').addEvent('mouseover', function(event){ 
 		    if (!editor_loaded)
-		    {
+		    { 
 			load_editor2();
 			editor_loaded = true;
-		    }
-		    });
+		     }
+		     });
 
             document.getElementById('image_upload_form').onsubmit = function()
-                    {
+                    { 
                         document.getElementById('image_upload_form').target = 'upload_target';
                         document.getElementById("upload_target").onload = image_upload_form;
-                    }
+                     }
 
-                     SqueezeBox.assign($$('a.boxed'), {
+                     SqueezeBox.assign($$('a.boxed'), { 
                                     parse: 'rel'
-                            });
+                             });
 
             load_table_sorter();
 
-		});
+		 });
 	</script>
-{/literal}
+
+<?php $mabilis_ttl=1316261865; $mabilis_last_modified=1316176931; //Y:\home\imshop\www\/templates/administrator/edit_page.tpl ?>

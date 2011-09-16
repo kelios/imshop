@@ -1,5 +1,5 @@
-<form method="post" action="{$BASE_URL}admin/pages/add" enctype="multipart/form-data" id="add_page_form" style="width:100%;">
-<input type="hidden" name="redirect" value="{echo ShopCore::$_GET['redirect']}"/>
+<form method="post" action="<?php if(isset($BASE_URL)){ echo $BASE_URL; } ?>admin/pages/add" enctype="multipart/form-data" id="add_page_form" style="width:100%;">
+<input type="hidden" name="redirect" value="<?php echo ShopCore::$_GET['redirect'] ?>"/>
 <input type="hidden" name="deleteMainImage" id="deleteMainImage" value="0"/>
  <input type="hidden" name="deleteSmallImage" id="deleteSmallImage" value="0"/>
 <div id="tabs-block"  style="float:left;width:100%;">
@@ -11,11 +11,11 @@
         <div id="fast_category_list" style="float:left;">
             Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
                 <option value="0" selected="selected">Нет</option>
-                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
+                <?php  $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat']));  ?>
                 </select> 
         </div>
 
-        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
+        <img  src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
 
 		<div class="form_overflow" style="padding:5px;"></div>
 
@@ -33,11 +33,11 @@
                         <tr>
                             <td>
 
-                                {if $b_picture == true}
-                                <a href="/uploads/shop/{echo $page_id}_Page.jpg?{rand(1,9999)}" id="mainImagePrevLink" class="boxed" rel="{literal}{handler:'image'}{/literal}">
-                                    <img src="/uploads/shop/{echo $page_id}_Page.jpg?{rand(1,9999)}" style="cursor:pointer;" width="90px" />
+                                <?php if($b_picture == true): ?>
+                                <a href="/uploads/shop/<?php echo $page_id ?>_Page.jpg?<?php  echo rand (1,9999);  ?>" id="mainImagePrevLink" class="boxed" rel="{ handler:'image' }">
+                                    <img src="/uploads/shop/<?php echo $page_id ?>_Page.jpg?<?php  echo rand (1,9999);  ?>" style="cursor:pointer;" width="90px" />
                                 </a>
-                                {/if}
+                                <?php endif; ?>
 
                             </td>
                         </tr>
@@ -49,10 +49,10 @@
                <div style="color:#fff;" id="mainImageName">Выбрать файл</div>
                <input type="file" onchange="$('mainImageName').set('html',document.getElementById('mainPhoto').value);" id="mainPhoto" name="mainPhoto" size="1" />
                </div>
-                    {if $b_picture == true}
-                    <img src="{$THEME}/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
+                    <?php if($b_picture == true): ?>
+                    <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
                     onclick="$('deleteMainImage').value=1; $('mainImagePrevLink').destroy(); "/>
-                {/if}
+                <?php endif; ?>
                  <input type="text" name="" value="http://" class="textbox_long" style="margin-left:5px;margin-top:5px;" />
                 <div style="margin-left:10px;margin-top:5px;">
                     <label><input type="checkbox" checked="checked" value="1" name="autoCreateSmallImage" /> Создать маленькое изображение</label>
@@ -65,12 +65,12 @@
                     <table border="0" cellspacing="0" cellpadding="0" height="90px" width="90px">
                         <tr>
                             <td>
-                                    {if $bsmall_picture == true}
-                                    <a href="/uploads/shop/{echo $page_id}_Pagesmall.jpg?{rand(1,9999)}" id="smallImagePrevLink" class="boxed" rel="{literal}{handler:'image'}{/literal}">
-                                    <img src="/uploads/shop/{echo $page_id}_Pagesmall.jpg?{rand(1,9999)}" style="cursor:pointer;" width="90px" />
+                                    <?php if($bsmall_picture == true): ?>
+                                    <a href="/uploads/shop/<?php echo $page_id ?>_Pagesmall.jpg?<?php  echo rand (1,9999);  ?>" id="smallImagePrevLink" class="boxed" rel="{ handler:'image' }">
+                                    <img src="/uploads/shop/<?php echo $page_id ?>_Pagesmall.jpg?<?php  echo rand (1,9999);  ?>" style="cursor:pointer;" width="90px" />
 
                                 </a>
-                                {/if}
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </table>
@@ -81,10 +81,10 @@
                <div style="color:#fff;" id="smallImageName">Выбрать файл</div>
                <input type="file" name="smallPhoto" onchange="$('smallImageName').set('html',document.getElementById('smallPhoto').value);" size="1" id="smallPhoto"/>
                </div>
-                    {if $bsmall_picture == true}
-                    <img src="{$THEME}/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
+                    <?php if($bsmall_picture == true): ?>
+                    <img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/delete.png"  style="padding-left:5px;margin-top:3px;cursor:pointer;"
                     onclick="$('deleteSmallImage').value=1; $('smallImagePrevLink').destroy(); "/>
-                {/if}
+                <?php endif; ?>
                 <input type="text" name="" value="http://" class="textbox_long" style="margin-left:5px;margin-top:5px;" />
             </div>
 
@@ -102,7 +102,7 @@
 
 		<div class="form_text">URL:</div>
 		<div class="form_input"><input type="text" name="page_url" value="" id="page_url" class="textbox_long" /> 
-        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="Транслитерация заголовка." /> 
+        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/translit.png" width="16" height="16" title="Транслитерация заголовка." /> 
         <div class="lite">(только латинские символы)</div>
         </div>
         <div class="form_overflow"></div>
@@ -117,14 +117,14 @@
 
 		<div class="form_text">Meta description:</div>
 			<div class="form_input"><textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
-			<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="Сгенерировать описание" style="cursor:pointer" width="16" height="16" />
+			<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-down.png" title="Сгенерировать описание" style="cursor:pointer" width="16" height="16" />
 		</div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text">Meta keywords:</div>
 		<div class="form_input">
 			<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-			<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="Сгенерировать ключевые слова" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
+			<img src="<?php if(isset($THEME)){ echo $THEME; } ?>/images/arrow-down.png" style="cursor:pointer" title="Сгенерировать ключевые слова" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
 
 			<div style="max-width:600px" id="keywords_list">
 
@@ -153,12 +153,11 @@
 		<div class="form_overflow"></div>
 	</div>
 
-    {($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
-{literal}
+    <?php ($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL; ?>
 <script type="text/javascript">
 
 </script>
-{/literal}
+
 </div>
 	<div id="sidebar2">
 		<div><h3><a href="#" onclick="side_panel('show'); return false;">показать настройки</a></h3></div>
@@ -178,14 +177,14 @@
 		<hr />
 		<p style="padding-left:15px;">
 		<b>Дата и время создания:</b>
-			<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
-			<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="<?php if(isset($cur_date)){ echo $cur_date; } ?>" type="text" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="<?php if(isset($cur_time)){ echo $cur_time; } ?>" class="textbox_short" /></p>
 		</p>
 		<hr />
 		<p style="padding-left:15px;">
 		<b>Дата и время публикации:</b>
-			<p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
-			<p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="<?php if(isset($cur_date)){ echo $cur_date; } ?>" type="text" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="<?php if(isset($cur_time)){ echo $cur_time; } ?>" class="textbox_short" /></p>
 		</p>
 		<hr />
 		<div style="padding-left:15px">
@@ -193,16 +192,16 @@
 			<p>
 			<select multiple="multiple" name="roles[]">
 			<option value="0">Все</option>
-			{foreach $roles as $role}
-			  <option value ="{$role.id}">{$role.alt_name}</option>
-			{/foreach}
+			<?php if(is_true_array($roles)){ foreach ($roles as $role){ ?>
+			  <option value ="<?php  echo $role['id'];  ?>"><?php  echo $role['alt_name'];  ?></option>
+			<?php }} ?>
 			</select>
 			</p>
 		</div>
 
 		</div>
 
-    {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
+    <?php ($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL; ?>
 
 	</div>
 
@@ -211,53 +210,51 @@
 
     <input type="submit" name="_add"  class="button_130" value="Создать Страницу"    />
 </div>
-{form_csrf()}
+<?php  echo form_csrf ();  ?>
  <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;display:none;"></iframe>
 
 </form>
-
-{literal}
 	<script type="text/javascript">
 	
            var cms_tabs = null;
            var sp_param = Cookie.read('sidepanel'); 
 
-            window.addEvent('domready', function() {
+            window.addEvent('domready', function() { 
 
             if (sp_param == 'show')
-            {
+            { 
                 document.getElementById('sidebar1').style.display='none'; 
                 document.getElementById('sidebar2').style.display='block';     
-            }
+             }
 
                 document.getElementById('add_page_form').onsubmit = function()
-                    {
+                    { 
                         document.getElementById('add_page_form').target = 'upload_target';
                         document.getElementById("upload_target").onload = uploadCallback;
-                    }
+                     }
 
-                     SqueezeBox.assign($$('a.boxed'), {
+                     SqueezeBox.assign($$('a.boxed'), { 
                                     parse: 'rel'
-                            });
+                             });
 
             load_table_sorter();
 
-			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
-			create_date_cal = new Calendar({ create_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
+			pub_date_cal = new Calendar({  publish_date: 'Y-m-d'  }, {  direction: .0, tweak: { x: -150, y: 22 }  });
+			create_date_cal = new Calendar({  create_date: 'Y-m-d'  }, {  direction: .0, tweak: { x: -150, y: 22 }  });
 
-			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
+			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', { 
 				'postVar': 'search_tags'
-			});
+			 });
 
-			cms_tabs = new SimpleTabs('tabs-block', {
+			cms_tabs = new SimpleTabs('tabs-block', { 
 			selector: 'h4'
-			});        
+			 });        
  
 
             load_editor();
 	    
-		function load_editor2()        {
-                    tinyMCE.init({
+		function load_editor2()        { 
+                    tinyMCE.init({ 
                         mode : 'specific_textareas',
                         editor_selector : 'mceEditor2',
                         language: 'ru',
@@ -281,35 +278,36 @@
                         force_br_newlines : true,
                         force_p_newlines : false,
                         relative_urls : false,
-                        setup : function(ed) {
-                            ed.addButton('imagebox', {
+                        setup : function(ed) { 
+                            ed.addButton('imagebox', { 
                                 title : 'Imagebox',
                                 image : '/application/modules/imagebox/templates/images/button.png',
-                                onclick : function() {
+                                onclick : function() { 
                                     show_main_window();
-                                    }
-                                    });
-                            },
-                            });
-                    };
+                                     }
+                                     });
+                             },
+                             });
+                     };
 	    
 	    	var editor_loaded = false;
 		
-		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
+		$('tabs-block').getElements('a').addEvent('mouseover', function(event){ 
 		    if (!editor_loaded)
-		    {
+		    { 
 			load_editor2();
 			editor_loaded = true;
-		    }
-		    });	
-		});
+		     }
+		     });	
+		 });
 function showMessage(title,message)
-{
-	var roar = new Roar({
+{ 
+	var roar = new Roar({ 
 			duration: 5000
-	});
+	 });
 
 	roar.alert(title,message);
-}
+ }
 	</script>
-{/literal}
+
+<?php $mabilis_ttl=1316263094; $mabilis_last_modified=1316178471; //Y:\home\imshop\www\/templates/administrator/add_page.tpl ?>

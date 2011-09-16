@@ -8,13 +8,35 @@ class Pages extends MY_Controller{
 						 );
 
 
+        protected $allowedImageExtensions = array('jpg','png','gif');
+
+        protected $imageSizes = array(
+            'mainImageWidth'   => 300,
+            'mainImageHeight'  => 500,
+            'smallImageWidth'  => 150,
+            'smallImageHeight' => 200,
+            'maxImageWidth'    => 800,
+            'maxImageHeight'   => 600,
+        );
+
+        protected $imageQuality = 99;
+        
 	function __construct()
 	{
 		parent::__construct();
-
+// Load image sizes.
+        $this->imageSizes['mainImageWidth'] = ShopCore::app()->SSettings->mainImageWidth;
+        $this->imageSizes['mainImageHeight'] = ShopCore::app()->SSettings->mainImageHeight;
+        $this->imageSizes['smallImageWidth'] = ShopCore::app()->SSettings->smallImageWidth;
+        $this->imageSizes['smallImageHeight'] = ShopCore::app()->SSettings->smallImageHeight;
+        $this->imageSizes['maxImageWidth'] = ShopCore::app()->SSettings->addImageWidth;
+        $this->imageSizes['maxImageHeight'] = ShopCore::app()->SSettings->addImageHeight;
+       
+        
         $this->load->library('DX_Auth');
         admin_or_redirect();
-
+        
+                
 		$this->load->library('lib_admin');
 		$this->load->library('lib_editor');
 		$this->load->library('lib_category');
@@ -32,7 +54,7 @@ class Pages extends MY_Controller{
 		$this->template->assign('roles',$query->result_array());
 
         $uri_segs = $this->uri->uri_to_assoc(2);
-
+       
         $this->template->add_array(array(
                 'tree'     => $this->lib_category->build(), // Load category tree
                 'editor'   => $this->lib_editor->init(),    // Load editor javascript code
@@ -130,6 +152,7 @@ class Pages extends MY_Controller{
 		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
 		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
 		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
+                
 		
         $this->form_validation->set_rules('main_tpl', 'Главный шаблон страницы', 'trim|max_length[50]|min_length[2]');
 
@@ -237,6 +260,83 @@ class Pages extends MY_Controller{
 			showMessage ('Страница создана');
 			updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
 		}
+
+
+                $this->load->library('image_lib');
+
+                // Resize images.
+                if (!empty($_FILES['mainPhoto']['tmp_name'])&& $this->_isAllowedExtension($_FILES['mainPhoto']['name']) === true)
+                {
+
+                  if (file_exists(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg'))
+                       unlink(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+                   // $smallImageSource = ShopCore::$imagesUploadPath.$model->getId().'_main.jpg';
+                    $imageSizes = $this->getImageSize($_FILES['mainPhoto']['tmp_name']);
+
+                    if ($imageSizes['width'] > $this->imageSizes['mainImageWidth'] && $imageSizes['height'] > $this->imageSizes['mainImageHeight'])
+                    {
+                        $config['image_library'] = 'gd2';
+                        $config['source_image']	 = $_FILES['mainPhoto']['tmp_name'];
+                        $config['create_thumb']  = FALSE;
+                        $config['maintain_ratio']= TRUE;
+                        $config['width']	 = $this->imageSizes['mainImageWidth'];
+                        $config['height']	 = $this->imageSizes['mainImageHeight'];
+                        $config['new_image']     = ShopCore::$imagesUploadPath.$page_id.'_Page.jpg';
+                        $config['quality']       = $this->imageQuality;
+
+                        $this->image_lib->initialize($config);
+
+                        if ($this->image_lib->resize())
+                        {
+                            $mainImageResized = true;
+                       }
+                    }
+                    else
+                    {
+                        move_uploaded_file($_FILES['mainPhoto']['tmp_name'], ShopCore::$imagesUploadPath.$page_id.'_main.jpg');
+                        $mainImageResized = true;
+                    }
+                }
+
+                // Image Resized.
+                // Create small image.
+                if (empty($_FILES['smallPhoto']['tmp_name']) && $_POST['autoCreateSmallImage'] == 1 && $mainImageResized === true)
+                    $smallImageSource = ShopCore::$imagesUploadPath.$page_id.'_Page.jpg';
+                elseif(!empty($_FILES['smallPhoto']['tmp_name']) && $this->_isAllowedExtension($_FILES['smallPhoto']['name']) === true)
+                    $smallImageSource = $_FILES['smallPhoto']['tmp_name'];
+                else
+                    $smallImageSource = false;
+
+                if ($smallImageSource != false)
+                {
+                    if (file_exists(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg'))
+                        unlink(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+
+                    $this->image_lib->clear();
+                    $config['image_library'] = 'gd2';
+                    $config['source_image']	= $smallImageSource;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width']	 = $this->imageSizes['smallImageWidth'];
+                    $config['height']	 = $this->imageSizes['smallImageHeight'];
+                    $config['new_image'] = ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg';
+                    $config['quality'] = $this->imageQuality;
+
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
+                }
+                
+                if ($_POST['_add'])
+                    $redirect_url = 'pages/index';
+
+
+                echo json_encode(array(
+                    'ok'=>true,
+                    'redirect_url'=>$redirect_url,
+                ));
+    		
+                
 	}
 
 	/*
@@ -293,12 +393,14 @@ class Pages extends MY_Controller{
 			showMessage('Страница '.$page_id.' не найдена');
 			exit;
 		}
-
+               
+               
 		$def_lang = $this->cms_admin->get_default_lang();
 
         // Get page data
         $data = $this->db->get_where('content', array('id' => $page_id))->row_array();
-
+        $b_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+        $bsmall_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
         if ($lang != 0 AND $lang != $data['lang'])
         {
             $data = $this->db->get_where('content', array('lang_alias' => $page_id, 'lang' => $lang));
@@ -315,8 +417,10 @@ class Pages extends MY_Controller{
 
 		if ($data)
         {
-    		$this->template->assign('page_id', $page_id);
+                        $this->template->assign('page_id', $page_id);
 			$this->template->assign('update_page_id', $data['id']);
+                        $this->template->assign('b_picture', $b_picture);
+                        $this->template->assign('bsmall_picture', $bsmall_picture);
 
 			$this->template->add_array($data);
 
@@ -427,6 +531,34 @@ class Pages extends MY_Controller{
 
 	}
 
+         protected function _isAllowedExtension($fileName)
+    {
+        $parts = explode('.', $fileName);
+        $ext = strtolower(end($parts));
+
+        if (in_array($ext, $this->allowedImageExtensions))
+            return true;
+        else
+            return false;
+    }
+
+         protected function getImageSize($file_path)
+    {
+		if (function_exists('getimagesize') && file_exists($file_path))
+		{
+			$image = @getimagesize($file_path);
+
+            $size = array(
+                'width'  => $image[0],
+                'height' => $image[1],
+                );
+
+			return $size;
+        }
+
+        return false;
+    }
+
 	 /**
 	 * Update existing page by ID
 	 *
@@ -437,6 +569,9 @@ class Pages extends MY_Controller{
 		
         cp_check_perm('page_edit');
 
+        $bsmall_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+        $b_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+        
 		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
 		$this->form_validation->set_rules('page_url', 'URL', 'alpha_dash');
 		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
@@ -448,6 +583,20 @@ class Pages extends MY_Controller{
 		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
 		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
 		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
+
+               if ($_POST['deleteMainImage'] == 1)
+               {
+                   echo 'lf';
+                    @unlink(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+               }
+
+               if ($_POST['deleteSmallImage'] == 1)
+               {
+                  @unlink(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+               }
+                    
+                
+                 
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -473,8 +622,8 @@ class Pages extends MY_Controller{
 
 			$this->db->where('url', $url);
 			$this->db->where('category', $this->input->post('category'));
-            $this->db->where('category !=', $b_page['category']);
-            $this->db->where('lang', $b_page['lang']);
+                        $this->db->where('category !=', $b_page['category']);
+                        $this->db->where('lang', $b_page['lang']);
 			$query = $this->db->get('content',1);
 
 			if($query->num_rows() > 0)
@@ -513,9 +662,78 @@ class Pages extends MY_Controller{
 			$publish_date = $this->input->post('publish_date').' '.$this->input->post('publish_time');
 			$create_date = $this->input->post('create_date').' '.$this->input->post('create_time');
 
+
+
+                         $this->load->library('image_lib');
+
+                // Resize images.
+                if (!empty($_FILES['mainPhoto']['tmp_name'])&& $this->_isAllowedExtension($_FILES['mainPhoto']['name']) === true)
+                {
+
+                  if (file_exists(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg'))
+                       unlink(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+                   // $smallImageSource = ShopCore::$imagesUploadPath.$model->getId().'_main.jpg';
+                    $imageSizes = $this->getImageSize($_FILES['mainPhoto']['tmp_name']);
+
+                    if ($imageSizes['width'] > $this->imageSizes['mainImageWidth'] && $imageSizes['height'] > $this->imageSizes['mainImageHeight'])
+                    {
+                        $config['image_library'] = 'gd2';
+                        $config['source_image']	= $_FILES['mainPhoto']['tmp_name'];
+                        $config['create_thumb'] = FALSE;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width']	 = $this->imageSizes['mainImageWidth'];
+                        $config['height']	 = $this->imageSizes['mainImageHeight'];
+                        $config['new_image'] = ShopCore::$imagesUploadPath.$page_id.'_Page.jpg';
+                        $config['quality'] = $this->imageQuality;
+
+                        $this->image_lib->initialize($config);
+
+                        if ($this->image_lib->resize())
+                        {
+                            $mainImageResized = true;
+                       }
+                    }
+                    else
+                    {
+                        move_uploaded_file($_FILES['mainPhoto']['tmp_name'], ShopCore::$imagesUploadPath.$page_id.'_main.jpg');
+                        $mainImageResized = true;
+                        //$model->setMainImage($page_id.'_Page.jpg');
+                    }
+                }
+
+                // Image Resized.
+                // Create small image.
+                if (empty($_FILES['smallPhoto']['tmp_name']) && $_POST['autoCreateSmallImage'] == 1 && $mainImageResized === true)
+                    $smallImageSource = ShopCore::$imagesUploadPath.$page_id.'_Page.jpg';
+                elseif(!empty($_FILES['smallPhoto']['tmp_name']) && $this->_isAllowedExtension($_FILES['smallPhoto']['name']) === true)
+                    $smallImageSource = $_FILES['smallPhoto']['tmp_name'];
+                else
+                    $smallImageSource = false;
+
+                if ($smallImageSource != false)
+                {
+                    if (file_exists(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg'))
+                        unlink(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+
+                    $this->image_lib->clear();
+                    $config['image_library'] = 'gd2';
+                    $config['source_image']	= $smallImageSource;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width']	 = $this->imageSizes['smallImageWidth'];
+                    $config['height']	 = $this->imageSizes['smallImageHeight'];
+                    $config['new_image'] = ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg';
+                    $config['quality'] = $this->imageQuality;
+
+                    $this->image_lib->initialize($config);
+                    $this->image_lib->resize();
+
+                }
+                      
+
 			$data = array(
-                'title' => trim($this->input->post('page_title')),
-                'meta_title' => trim($this->input->post('meta_title')),
+                                'title' => trim($this->input->post('page_title')),
+                                 'meta_title' => trim($this->input->post('meta_title')),
 				'url' => str_replace('.', '', trim($url)), //Delete dots from url
 				'cat_url' => $full_url,
 				'keywords' => $keywords,
@@ -526,13 +744,13 @@ class Pages extends MY_Controller{
 				//'prev_text' => htmlspecialchars(trim($this->lib_admin->db_post('prev_text'))),
 				'category' => $this->input->post('category'),
 				'full_tpl' => $_POST['full_tpl'],
-                'main_tpl' => $_POST['main_tpl'],
+                                 'main_tpl' => $_POST['main_tpl'],
 				'comments_status' => $this->input->post('comments_status'),
 				'post_status' => $this->input->post('post_status'),
 				'author' => $this->dx_auth->get_username(),
 				'publish_date' => strtotime($publish_date),
 				'created'	=> strtotime($create_date),
-				'updated' => time()
+                                'updated'       => time()
 			);
 
 			$data['id'] = $page_id;
@@ -554,6 +772,10 @@ class Pages extends MY_Controller{
 				showMessage ('Ошибка.');
 			}
 		}
+
+             if ($_POST['_update'])
+                    $redirect_url = 'products/index/' . $page_id;
+                 
 	}
 
 	/**
@@ -655,8 +877,15 @@ class Pages extends MY_Controller{
             {
                 $page_id = substr($v,5);
                 $this->delete($page_id, FALSE);
+                $bsmall_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+                $b_picture = file_exists(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+                if ($bsmall_picture == true)
+                @unlink(ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
+                if ($b_picture == true)
+                @unlink(ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
             }
         }
+
     }
 
     function move_pages($action)
@@ -688,6 +917,8 @@ class Pages extends MY_Controller{
 
                         $this->db->where('id', $page_id);
                         $this->db->update('content', $data);
+                       
+		
                     break;
 
                     case 'copy':
@@ -703,11 +934,23 @@ class Pages extends MY_Controller{
 
                         $page['url'] .= $new_url + 1;
 
+                        $page_previous = $page['id'];
                         unset($page['id']);
 
                         ($hook = get_hook('admin_pages_copy')) ? eval($hook) : NULL;
 
                         $this->db->insert('content', $page);
+
+                         // Clone main/small image
+                        $page_id = mysql_insert_id();
+                   
+				$source_file = ShopCore::$imagesUploadPath.$page_previous.'_Page.jpg';
+					if (file_exists($source_file))
+						copy($source_file, ShopCore::$imagesUploadPath.$page_id.'_Page.jpg');
+
+				$source_file = ShopCore::$imagesUploadPath.$page_previous.'_Pagesmall.jpg';
+					if (file_exists($source_file))
+						copy($source_file, ShopCore::$imagesUploadPath.$page_id.'_Pagesmall.jpg');
                     break;
                 }
             }

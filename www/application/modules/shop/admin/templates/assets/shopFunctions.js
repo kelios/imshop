@@ -35,6 +35,8 @@ window.addEvent('domready', function(){
     setTimeout("loadShopSidebarCats()", 1800);
 });
 
+
+
 /**
  * Load shop main menu and sidebar categories list. 
  * 
@@ -482,6 +484,20 @@ function deleteVariant(id)
     $(id).dispose(); 
 }
 
+function start_ajax()
+{
+	$('spinner2').src = theme + '/images/spinner.gif';
+}
+
+function showMessage(title,message)
+{
+	var roar = new Roar({
+			duration: 5000
+	});
+
+	roar.alert(title,message);
+}
+
 // Callback function to post form
 function uploadCallback()
 {
@@ -493,14 +509,18 @@ function uploadCallback()
     if (result_arr.error)
     {
         showMessage('Ошибка', nl2br(result_arr.error));
+    
     }
+
     if (result_arr.ok)
     {
         showMessage('Сообщение:', 'Изменения сохранены');
         var redirect_url = result_arr.redirect_url;
         ajaxShop(redirect_url.replace(/\&amp\;/g,'&'));
     }
+
 }
+
 
 function deleteAdditionalImage(position)
 {

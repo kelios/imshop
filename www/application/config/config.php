@@ -43,9 +43,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
+$db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['database'] = 'imshop';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -56,7 +56,8 @@ $db['default']['char_set'] = 'utf8';
 $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+$db['default']['stricton'] = FALSE; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +89,7 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = FALSE;
+$config['is_installed'] = TRUE;
 $config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------

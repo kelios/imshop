@@ -12,9 +12,9 @@ function ajax_me(form_id)
 			method: $(form_id).get('method'),
 			url: $(form_id).get('action'),
 
-			onRequest: function() { start_ajax(); },
-			onFailure: function() { },
-			onSuccess: function() { },
+			//onRequest: function() { start_ajax(); },
+			//onFailure: function(response) { my_alert(form_id); },
+			onSuccess:function(response) { my_alert(form_id); },
 			onComplete: function(response) { my_alert(form_id); }
 		}).post($(form_id));
 
@@ -37,9 +37,9 @@ function ajax_form(form_id,update_block)
 			method: $(form_id).get('method'),
 			url: $(form_id).get('action'),
 			update: update_div,
-			onRequest: function() { start_ajax(); },
-			onFailure: function() { },
-			onSuccess: function() { },
+			onRequest:  function() { start_ajax(); },
+			onFailure:  function() { },
+			onSuccess:  function() { },
 			onComplete: function(response) { my_alert(form_id); }
 		}).post($(form_id));
 	});
