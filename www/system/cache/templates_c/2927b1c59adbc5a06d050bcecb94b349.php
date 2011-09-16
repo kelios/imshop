@@ -300,14 +300,14 @@
 		     }
 		     });	
 		 });
-function showMessage(title,message)
-{ 
-	var roar = new Roar({ 
-			duration: 5000
-	 });
+        function showMessage(title,message)
+        { 
+                var roar = new Roar({ 
+                                duration: 5000
+                 });
 
-	roar.alert(title,message);
- }
+                roar.alert(title,message);
+         }
 	</script>
 
-<?php $mabilis_ttl=1316263094; $mabilis_last_modified=1316178471; //Y:\home\imshop\www\/templates/administrator/add_page.tpl ?>
+<?php $mabilis_ttl=1316264909; $mabilis_last_modified=1316179210; //Y:\home\imshop\www\/templates/administrator/add_page.tpl ?>

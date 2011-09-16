@@ -12,8 +12,8 @@ function ajax_me(form_id)
 			method: $(form_id).get('method'),
 			url: $(form_id).get('action'),
 
-			//onRequest: function() { start_ajax(); },
-			//onFailure: function(response) { my_alert(form_id); },
+			onRequest: function() { start_ajax(); },
+			onFailure: function(response) { my_alert(form_id); },
 			onSuccess:function(response) { my_alert(form_id); },
 			onComplete: function(response) { my_alert(form_id); }
 		}).post($(form_id));
@@ -179,7 +179,7 @@ function showMessage(title,message)
 
 function cats_options(cat_id)
 {
-	ajax_div('page', base_url + 'admin/pages/GetPagesByCategory/' + cat_id);
+	ajax_div('page', base_url + 'admin/pages/GetPagesByCategory/' + cat_id);ajax_div
 }
 
 

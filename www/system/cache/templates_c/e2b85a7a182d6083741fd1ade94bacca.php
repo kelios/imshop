@@ -8,4 +8,4 @@
             <?php $this->view('cats_select.tpl', array('tree' => $item['subtree'], 'parent_id' => $parent_id, 'sel_cat' => $sel_cat, 'id'=>$id)) ?>
         <?php endif; ?>
 <?php }} ?>
-<?php $mabilis_ttl=1316263094; $mabilis_last_modified=1290434548; //Y:\home\imshop\www\/templates/administrator/cats_select.tpl ?>
+<?php $mabilis_ttl=1316264909; $mabilis_last_modified=1290434548; //Y:\home\imshop\www\/templates/administrator/cats_select.tpl ?>

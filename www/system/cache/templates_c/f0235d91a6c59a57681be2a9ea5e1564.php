@@ -172,4 +172,4 @@
          }
     </script>
 
-<?php $mabilis_ttl=1316157712; $mabilis_last_modified=1308233576; //Y:\home\imshop\www\/application/modules/shop/admin\templates\products\list.tpl ?>
+<?php $mabilis_ttl=1316264761; $mabilis_last_modified=1308233576; //Y:\home\imshop\www\/application/modules/shop/admin\templates\products\list.tpl ?>

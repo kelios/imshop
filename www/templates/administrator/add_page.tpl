@@ -303,13 +303,13 @@
 		    }
 		    });	
 		});
-function showMessage(title,message)
-{
-	var roar = new Roar({
-			duration: 5000
-	});
+        function showMessage(title,message)
+        {
+                var roar = new Roar({
+                                duration: 5000
+                });
 
-	roar.alert(title,message);
-}
+                roar.alert(title,message);
+        }
 	</script>
 {/literal}
