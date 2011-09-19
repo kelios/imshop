@@ -16,17 +16,21 @@ class SCategoryTree {
 
     public $categories = array();
     public $tree = array();
-    public $categoryUrlPrefix = '/shop/category/'; // Url prefix for links in UL tree. See $this->ul().
+    public $categoryUrlPrefix = 'category/'; // Url prefix for links in UL tree. See $this->ul().
     public $loadUnactive = false;
+    public $rename='';
 
     protected $multi = false;
     protected $level = -1;
     protected $path = array();
     protected $pathIds = array();
     private $_initialized = false;
+
  
     public function __construct()
     {
+        $q =  ShopCore::$ci->db->get_where('components',array('name' => 'shop'),1)->row_array();
+        $this->rename ='/'.$q['identif'].'/';
         return $this;
     }
 
@@ -175,7 +179,7 @@ class SCategoryTree {
             if ($key->getId() == $activeID)
     			echo '<li>'.ShopCore::encode($key->getName()).'</a>';
             else
-    			echo '<li><a href="'.$this->categoryUrlPrefix.$key->getFullPath().'">'.ShopCore::encode($key->getName()).'</a>';
+    			echo '<li><a href="'.$this->rename.$this->categoryUrlPrefix.$key->getFullPath().'">'.ShopCore::encode($key->getName()).'</a>';
 
 			if(sizeof($key->getSubtree()))
 			{
@@ -189,6 +193,8 @@ class SCategoryTree {
 	
 	public function getSubcategories($categoryID = 0)
     {
+        
+        
         $categories = ShopCore::app()->SCategoryTree->createTree($categoryID);
 		$ret = array();
 		
@@ -196,7 +202,7 @@ class SCategoryTree {
 		{
 			foreach ($categories as $category) {
 					$ret[$category->getID()]['name'] = ShopCore::encode($category->getName());
-					$ret[$category->getID()]['link'] = $this->categoryUrlPrefix.$category->getFullPath();
+					$ret[$category->getID()]['link'] = $this->rename.$this->categoryUrlPrefix.$category->getFullPath();
 			}
 		}
 

@@ -38,8 +38,10 @@ class Components extends MY_Controller{
 				$info = $this->get_module_info( $fs_modules[$i]['com_name'] );
 
 				$fs_modules[$i]['name'] = $info['menu_name'];
+                                //$fs_modules[$i]['rename'] = $info['menu_name'];
 				$fs_modules[$i]['version'] = $info['version'];
 				$fs_modules[$i]['description'] = $info['description'];
+                                
 
 				array_push($not_installed,$fs_modules[$i]);
 			}
@@ -52,6 +54,7 @@ class Components extends MY_Controller{
 			$info = $this->get_module_info( $db_modules[$i]['name'] );
 
 			$db_modules[$i]['menu_name'] = $info['menu_name'];
+                        //$fs_modules[$i]['rename'] = $info['menu_name'];
 			$db_modules[$i]['version'] = $info['version'];
 			$db_modules[$i]['description'] = $info['description'];
 			$db_modules[$i]['identif'] = anchor($db_modules[$i]['identif'],$db_modules[$i]['identif']);
@@ -88,6 +91,7 @@ class Components extends MY_Controller{
 			// Make module install
 			$data = array(
 			'name' => $module,
+                        //'rename' => $module,
 			'identif' => $module
 			);
 
@@ -216,6 +220,7 @@ class Components extends MY_Controller{
 			$this->template->add_array($com);
 		}else{
 			$this->template->assign('com_name', $component);
+                       // $this->template->assign('rename', $component);
 			$this->template->assign('identif', $component);
 			$this->template->assign('status', 0);
 		}
@@ -238,11 +243,14 @@ class Components extends MY_Controller{
 		if ($query->num_rows() >= 1)
 		{
 			$data = array(
-				'enabled' => (int)$this->input->post('status'),
+				'enabled'  => (int)$this->input->post('status'),
 				//'identif' => $this->input->post('identif'),
-				'identif' => $com['name'],
+                                //'identif'  => $com['name'],
+				'identif'  => $this->input->post('rename'),//$com['name'],
+                                //'identif'  => $this->input->post('rename'),//$com['name'],
+                               // 'rename'   => $this->input->post('rename'),
 				'autoload' => (int)$this->input->post('autoload'),
-				'in_menu' => (int)$this->input->post('in_menu')
+				'in_menu'  => (int)$this->input->post('in_menu')
 			);
 
 			$this->db->where('name',$component);

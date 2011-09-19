@@ -12,4 +12,4 @@
             <a href="<?php  echo shop_url ('cart');  ?>" class="image"><img src="<?php if(isset($SHOP_THEME)){ echo $SHOP_THEME; } ?>style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a>
         </span>
 
-<?php $mabilis_ttl=1316264854; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce/shop/default/cart_data.tpl ?>
+<?php $mabilis_ttl=1316510126; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce/shop/default/cart_data.tpl ?>

@@ -8,4 +8,4 @@
         </div>
     <?php }} ?>
     <div align="center"><a href="/novosti_i_aktsii">Архив новостей</a></div>
-</div><?php $mabilis_ttl=1316265065; $mabilis_last_modified=1291799964; //Y:\home\imshop\www\/templates/commerce/widgets/latest_news.tpl ?>
+</div><?php $mabilis_ttl=1316510151; $mabilis_last_modified=1291799964; //Y:\home\imshop\www\/templates/commerce/widgets/latest_news.tpl ?>

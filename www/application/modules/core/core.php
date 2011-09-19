@@ -792,7 +792,8 @@ class Core extends MY_Controller {
             if ($k['identif'] === $segment AND $k['enabled'] == 1)
             {
                 $found = TRUE;
-                $mod_name = $k['identif']; 
+                $mod_name = $k['identif'];
+                $rename = $k['identif'];
             }
         }
 
@@ -800,6 +801,11 @@ class Core extends MY_Controller {
         {
             //$mod_name = $this->modules[$this->uri->segment($n)];
             $mod_function = $this->uri->segment($n + 1);
+
+            if ($mod_name == $rename) {
+            	$mod_name = 'shop';
+            }
+
 
             if($mod_function == FALSE) $mod_function = 'index';
 

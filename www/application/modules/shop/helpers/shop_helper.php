@@ -1,10 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+    
     if (!function_exists('shop_url'))
     {
         function shop_url($url)
         {
-            return site_url('shop/'.$url);
+            $q =  ShopCore::$ci->db->get_where('components',array('name' => 'shop'),1)->row_array();
+            $rename =$q['identif'].'/';
+            return site_url($rename.$url);
         }
     }
 

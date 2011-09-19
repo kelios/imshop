@@ -132,4 +132,4 @@ window.addEvent('domready', function(){
 
 
 
-<?php $mabilis_ttl=1316265178; $mabilis_last_modified=1308311248; //Y:\home\imshop\www\/templates/administrator/module_table.tpl ?>
+<?php $mabilis_ttl=1316508688; $mabilis_last_modified=1308311248; //Y:\home\imshop\www\/templates/administrator/module_table.tpl ?>

@@ -11,4 +11,4 @@ var myTree = new rdTree('desktop_tree');
 myTree.select("root_tree");
 </script>
 </div>
-<?php $mabilis_ttl=1316266308; $mabilis_last_modified=1251921688; //Y:\home\imshop\www\/templates/administrator/cats_sidebar.tpl ?>
+<?php $mabilis_ttl=1316508686; $mabilis_last_modified=1251921688; //Y:\home\imshop\www\/templates/administrator/cats_sidebar.tpl ?>
