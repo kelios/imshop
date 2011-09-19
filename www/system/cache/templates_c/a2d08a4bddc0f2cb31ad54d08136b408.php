@@ -26,4 +26,4 @@
         <?php }} ?>
     </table>
 </div>
-<?php $mabilis_ttl=1316509876; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/profile.tpl ?>
+<?php $mabilis_ttl=1316517151; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/profile.tpl ?>

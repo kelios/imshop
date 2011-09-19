@@ -58,7 +58,9 @@
         <div class="field">      
             <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
             &nbsp;
-            <a href="{site_url('auth/login')}">Вход</a>
+            {$q =  ShopCore::$ci->db->get_where('components',array('name' => 'auth'),1)->row_array();}
+            {$rename =$q['identif'].'/';}
+            <a href="{site_url('{$rename}login')}">Вход</a>
         </div>
         <div class="clear"></div>
 

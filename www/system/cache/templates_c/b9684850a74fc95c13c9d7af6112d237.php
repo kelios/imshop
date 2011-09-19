@@ -23,4 +23,4 @@
 	    onclick="ajax_me('component_save_form'); MochaUI.closeWindow($('edit_component_window'));"/>
 	</div>
 <?php  echo form_csrf ();  ?></form>
-<?php $mabilis_ttl=1316510142; $mabilis_last_modified=1316425269; //Y:\home\imshop\www\/templates/administrator/component_settings.tpl ?>
+<?php $mabilis_ttl=1316515872; $mabilis_last_modified=1316425269; //Y:\home\imshop\www\/templates/administrator/component_settings.tpl ?>

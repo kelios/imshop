@@ -794,6 +794,7 @@ class Core extends MY_Controller {
                 $found = TRUE;
                 $mod_name = $k['identif'];
                 $rename = $k['identif'];
+                $idCat = $k['name'];
             }
         }
 
@@ -801,11 +802,87 @@ class Core extends MY_Controller {
         {
             //$mod_name = $this->modules[$this->uri->segment($n)];
             $mod_function = $this->uri->segment($n + 1);
+            switch ($idCat)
+            {
+              case 'shop':
+                  $mod_name = 'shop';
+              break;
 
-            if ($mod_name == $rename) {
-            	$mod_name = 'shop';
+              case 'user_manager':
+                  $mod_name = 'user_manager';
+              break;
+
+              case 'auth':
+                      $mod_name = 'auth';
+                  break;
+
+              case 'comments':
+                      $mod_name = 'comments';
+                  break;
+
+              case 'navigation':
+                      $mod_name = 'navigation';
+                  break;
+
+              case 'tags':
+                      $mod_name = 'tags';
+                  break;
+              case 'gallery':
+                      $mod_name = 'gallery';
+                  break;
+
+              case 'rss':
+                      $mod_name = 'rss';
+                  break;
+
+              case 'imagebox':
+                      $mod_name = 'imagebox';
+                  break;
+
+              case 'menu':
+                      $mod_name = 'menu';
+                  break;
+
+              case 'sitemap':
+                      $mod_name = 'sitemap';
+                  break;
+
+              case 'search':
+                      $mod_name = 'search';
+                  break;
+
+              case 'feedback':
+                      $mod_name = 'feedback';
+                  break;
+
+              case 'template_editor':
+                      $mod_name = 'template_editor';
+                  break;
+
+              case 'group_mailer':
+                      $mod_name = 'group_mailer';
+                  break;
+
+              case 'filter':
+                      $mod_name = 'filter';
+                  break;
+
+              case 'cfcm':
+                      $mod_name = 'cfcm';
+                  break;
+
+              case '':
+                      $mod_name = '';
+                  break;
+              
+
+              case 'size':
+                      $mod_name = 'size';
+                  break;
+              
+
             }
-
+         
 
             if($mod_function == FALSE) $mod_function = 'index';
 

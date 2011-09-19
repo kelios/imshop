@@ -209,4 +209,4 @@ function ajaxAddToCart()
     
 </div>
 
-<?php $mabilis_ttl=1316270286; $mabilis_last_modified=1307539914; //Y:\home\imshop\www\templates\commerce\shop\default/product.tpl ?>
+<?php $mabilis_ttl=1316516946; $mabilis_last_modified=1307539914; //Y:\home\imshop\www\templates\commerce\shop\default/product.tpl ?>
