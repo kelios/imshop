@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 19, 2011 at 12:46 PM
+-- Generation Time: Sep 22, 2011 at 03:46 PM
 -- Server version: 5.1.40
 -- PHP Version: 5.2.12
 
@@ -107,14 +107,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `module` (`module`),
   KEY `item_id` (`item_id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`) VALUES
-(10, 'core', 1, 'admin', 'admin@localhost.loc', '', 32, 'Первый комментарий.', 1267280509, 0, 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.8 (KHTML, like Gecko) Chrome/4.0.302.2 Safari/532.8', '127.0.0.5');
+(10, 'core', 1, 'admin', 'admin@localhost.loc', '', 32, 'Первый комментарий.', 1267280509, 0, 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.8 (KHTML, like Gecko) Chrome/4.0.302.2 Safari/532.8', '127.0.0.5'),
+(25, 'shop', 1, 'kelios', 'kelios@inbox.ru', '', 74, 'ikhukhjklhjkhjlkiuouhgio', 1316427202, 0, 'Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2', '127.0.0.1'),
+(26, 'shop', 1, 'kelios', 'kelios@inbox.ru', '', 74, 'tutyututyu', 1316427244, 0, 'Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2', '127.0.0.1'),
+(27, 'shop', 1, 'kelios', 'kelios@inbox.ru', '', 87, 'ghjgfjhgfjghj', 1316442233, 0, 'Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -144,10 +147,10 @@ CREATE TABLE IF NOT EXISTS `components` (
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
 (1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
 (2, 'auth', 'auth', 1, 0, 0, NULL),
-(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:1;s:14:"use_moderation";b:0;}'),
+(4, 'comments', 'recomments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:1;s:14:"use_moderation";b:0;}'),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL),
 (30, 'tags', 'tags', 1, 1, 1, NULL),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
+(92, 'gallery', 'regallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}'),
 (72, 'imagebox', 'imagebox', 0, 1, 0, 'a:6:{s:9:"max_width";i:800;s:10:"max_height";i:600;s:11:"thumb_width";i:100;s:12:"thumb_height";i:100;s:14:"maintain_ratio";b:1;s:7:"quality";s:3:"95%";}'),
 (60, 'menu', 'menu', 0, 1, 1, NULL),
@@ -208,8 +211,8 @@ CREATE TABLE IF NOT EXISTS `content` (
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
 (69, 'вид', '', 'speshite_priobresti_svoi_gps', 'novosti_i_aktsii/', 'рамках, акции, потеряйся, пустыне, gps, установлена, специальная, цена', 'В рамках акции не потеряйся в пустыне на все GPS установлена специальная цена.', '<p>В рамках акции "не потеряйся в пустыне" на все GPS установлена специальная цена.</p>', '', 56, '', '', 0, 0, 0, 'publish', 'kelios', 1291632619, 1291632635, 1316177253, 38, 3, 0),
 (35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1290100400, 12, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 238, 3, 0),
-(65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 124, 3, 0),
+(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 240, 3, 0),
+(65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 126, 3, 0),
 (66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 96, 3, 0),
 (67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 50, 3, 0),
 (68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 49, 3, 0),
@@ -453,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `login_attempts`
@@ -474,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=261 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=272 ;
 
 --
 -- Dumping data for table `logs`
@@ -699,7 +702,18 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (257, 1, 'kelios', 'Изменил настройки модуля shop', 1316420735),
 (258, 1, 'kelios', 'Изменил настройки модуля shop', 1316422586),
 (259, 1, 'kelios', 'Изменил настройки модуля shop', 1316422972),
-(260, 1, 'kelios', 'Изменил настройки модуля shop', 1316423281);
+(260, 1, 'kelios', 'Изменил настройки модуля shop', 1316423281),
+(261, 1, 'kelios', 'Изменил настройки модуля comments', 1316427227),
+(262, 1, 'kelios', 'Изменил настройки модуля gallery', 1316427571),
+(263, 1, 'kelios', 'Изменил настройки модуля shop', 1316429105),
+(264, 1, 'kelios', 'Вошел в панель управления IP 127.0.0.1', 1316429672),
+(265, 1, 'kelios', 'Вошел в панель управления IP 127.0.0.1', 1316429962),
+(266, 1, 'kelios', 'Изменил настройки модуля auth', 1316429974),
+(267, 1, 'kelios', 'Изменил настройки модуля auth', 1316430091),
+(268, 1, 'kelios', 'Изменил настройки модуля shop', 1316431254),
+(269, 1, 'kelios', 'Изменил настройки модуля auth', 1316431275),
+(270, 1, 'kelios', 'Вошел в панель управления IP 127.0.0.1', 1316692666),
+(271, 1, 'kelios', 'Изменил настройки модуля auth', 1316692690);
 
 -- --------------------------------------------------------
 
@@ -1250,9 +1264,9 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 
 INSERT INTO `shop_products` (`id`, `name`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`, `created`, `updated`, `old_price`, `views`, `hot`, `action`) VALUES
 (71, 'Sony KDL46EX710 46" LCD 1080p HDTV', '71', 1, NULL, 9, 37, '72,73,74', '', '', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307542725, 1307545867, 1150.00, NULL, NULL, NULL),
-(72, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '72', 1, 0, 10, 37, '', '72_main.jpg', '72_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307542324, 0, NULL, 3, NULL, NULL),
+(72, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '72', 1, 0, 10, 37, '', '72_main.jpg', '72_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307542324, 0, NULL, 5, NULL, NULL),
 (73, 'Panasonic Viera TC-L42U22 42" LCD TV', '73', 1, 1, 11, 37, '', '73_main.jpg', '73_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307541561, 0, 0.00, NULL, NULL, NULL),
-(74, 'Samsung LN40C650 40" LCD TV', '74', 1, 1, 12, 37, '', '74_main.jpg', '74_small.jpg', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', '', 1307543711, 1301492081, 0.00, NULL, NULL, NULL),
+(74, 'Samsung LN40C650 40" LCD TV', '74', 1, 1, 12, 37, '', '74_main.jpg', '74_small.jpg', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', '', 1307543711, 1301492081, 0.00, 7, NULL, NULL),
 (75, 'Calypso CLP-32LC1A 32" LCD 720p LCD', '75', 1, 0, 13, 37, '', '75_main.jpg', '75_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307544631, 0, NULL, NULL, NULL, NULL),
 (76, 'Calypso CLP-32LE110 32" LED 720p HDTV', '76', 1, 0, 13, 37, '71, 72, 73', '76_main.jpg', '76_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307543917, 0, NULL, 1, NULL, NULL),
 (96, 'Canon VIXIA HF R11 Digital', '96', 1, 1, 16, 45, '', '96_main.jpg', '96_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307542081, 0, NULL, NULL, NULL, NULL),
@@ -1266,7 +1280,7 @@ INSERT INTO `shop_products` (`id`, `name`, `url`, `active`, `hit`, `brand_id`, `
 (84, 'Panasonic DMP-BD45 Ultra-Fast', '84', 1, NULL, 11, 39, '', '84_main.jpg', '84_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307541602, 0, NULL, NULL, NULL, NULL),
 (85, 'LG BD570 Network Audio', '85', 1, NULL, 10, 39, '', '85_main.jpg', '85_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307544238, 0, NULL, NULL, NULL, NULL),
 (86, 'Samsung BD-C6900 1080p 3D Blu-ray', '86', 1, NULL, 12, 39, '', '86_main.jpg', '86_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307545023, 1301492895, 0.00, NULL, 0, 0),
-(87, 'Sony HT-SS370 Home Theater', '87', 1, NULL, 9, 41, '', '87_main.jpg', '87_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307541766, 0, NULL, NULL, NULL, NULL),
+(87, 'Sony HT-SS370 Home Theater', '87', 1, NULL, 9, 41, '', '87_main.jpg', '87_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307541766, 0, NULL, 4, NULL, NULL),
 (88, 'Samsung HW-C770BS 7.1 Channel', '88', 1, NULL, 12, 41, '', '88_main.jpg', '88_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307544977, 0, NULL, NULL, NULL, NULL),
 (95, 'Canon EOS Rebel T2i 18 Megapixel Digital', '95', 1, NULL, 16, 45, '', '95_main.jpg', '95_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307542081, 0, NULL, NULL, NULL, NULL),
 (89, 'Panasonic SCPTX7 Home Theater', '89', 1, NULL, 11, 41, '', '89_main.jpg', '89_small.jpg', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', 1307541636, 1301492999, 0.00, NULL, NULL, NULL),
@@ -1839,15 +1853,23 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `street` varchar(100) DEFAULT NULL,
+  `numberhome` varchar(10) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `additionalData` varchar(255) DEFAULT NULL,
+  `profileimage` varchar(255) CHARACTER SET ucs2 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `shop_user_profile`
 --
 
-INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`) VALUES
-(1, 1, 'Administrator', '', '');
+INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`, `city`, `street`, `numberhome`, `surname`, `additionalData`, `profileimage`) VALUES
+(1, 1, 'Алина', '+7 (903) 002–003–1', '', 'Москва', 'Профсоюзная', '4–1/2', 'Игнатенко', 'Я создана из ласки и слёз,из кошмаров и прекрасных грёз,из любви и ненависти,из счастья и печали…Я смесь из крика и улыбки,из правильной речи и ошибки,намешана из боли и блаженства…Я совершенное несовершенство…Как утренний рассвет прекрасна…Сильна как вет', ''),
+(25, 84, 'jgjgh', 'fgjgfj', 'fgjhhg', NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 85, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1937,20 +1959,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `vk_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
   KEY `role_id` (`role_id`),
   KEY `banned` (`banned`),
   KEY `password` (`password`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(1, 2, 'kelios', '$1$Rv4.Gd1.$wXevNKTe0JveUc3XXln9//', 'kelios@inbox.ru', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '2011-09-19 10:09:09', '2011-09-15 11:20:20', '2011-09-19 09:09:09');
+INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `vk_id`) VALUES
+(1, 2, 'kelios', '$1$Rv4.Gd1.$wXevNKTe0JveUc3XXln9//', 'kelios@inbox.ru', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '2011-09-22 15:57:46', '2011-09-15 11:20:20', '2011-09-22 14:57:46', 0);
 
 -- --------------------------------------------------------
 
@@ -1972,6 +1993,8 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- Dumping data for table `user_autologin`
 --
 
+INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
+('75f643fd5fc4fe778567454374de85ff', 85, 'Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2', '127.0.0.1', '2011-09-22 15:40:44');
 
 -- --------------------------------------------------------
 
@@ -1984,12 +2007,15 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user_profile`
 --
 
+INSERT INTO `user_profile` (`id`, `user_id`) VALUES
+(1, 84),
+(2, 85);
 
 -- --------------------------------------------------------
 
