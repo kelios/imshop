@@ -664,7 +664,7 @@ class Pages extends MY_Controller{
 
 
 
-                         $this->load->library('image_lib');
+                    $this->load->library('image_lib');
 
                 // Resize images.
                 if (!empty($_FILES['mainPhoto']['tmp_name'])&& $this->_isAllowedExtension($_FILES['mainPhoto']['name']) === true)

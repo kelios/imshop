@@ -109,4 +109,4 @@
     <!-- END NEW -->
 
 </div>
-<?php $mabilis_ttl=1316517733; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/start_page.tpl ?>
+<?php $mabilis_ttl=1316526805; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/start_page.tpl ?>

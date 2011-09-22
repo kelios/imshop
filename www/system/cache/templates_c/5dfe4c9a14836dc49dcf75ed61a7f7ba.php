@@ -141,4 +141,4 @@
     <?php endif; ?>
 
 
-</div><?php $mabilis_ttl=1316516944; $mabilis_last_modified=1308217400; //Y:\home\imshop\www\templates\commerce\shop\default/category.tpl ?>
+</div><?php $mabilis_ttl=1316526820; $mabilis_last_modified=1308217400; //Y:\home\imshop\www\templates\commerce\shop\default/category.tpl ?>

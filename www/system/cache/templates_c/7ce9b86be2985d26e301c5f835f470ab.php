@@ -6,4 +6,4 @@
 			<p><?php  echo $comment['text'];  ?> <a href="<?php  echo shop_url ('product');  ?>/<?php  echo $comment['item_id'];  ?>#comment_<?php  echo $comment['id'];  ?>">&rarr;</a></p>			
 		</div>
 	<?php }} ?>
-</div><?php $mabilis_ttl=1316517733; $mabilis_last_modified=1308300372; //Y:\home\imshop\www\/templates/commerce/widgets/recent_product_comments.tpl ?>
+</div><?php $mabilis_ttl=1316526833; $mabilis_last_modified=1308300372; //Y:\home\imshop\www\/templates/commerce/widgets/recent_product_comments.tpl ?>

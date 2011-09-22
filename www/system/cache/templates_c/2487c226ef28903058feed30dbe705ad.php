@@ -108,4 +108,4 @@
 <!-- END FOOTER -->
 </body>
 </html>
-<?php $mabilis_ttl=1316517733; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/main.tpl ?>
+<?php $mabilis_ttl=1316526833; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/main.tpl ?>
