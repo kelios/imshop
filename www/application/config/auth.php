@@ -11,10 +11,10 @@
 
 $config['DX_website_name'] = 'Image CMS';
 $config['DX_webmaster_email'] = 'webmaster@localhost';
-$config['VK_APP_ID'] = '2464640';
-$config['VK_APP_PASSWORD'] = 'Se5gKNMpGj198BC9O8EY'; //secret
-$config['FB_APP_ID'] = '267585903271931';
-$config['FB_APP_SECRET'] = '21d02f1c2045bd356d1d6df6c30c825a';
+$config['VK_APP_ID'] = '2494304';
+$config['VK_APP_PASSWORD'] = 'V5v3TBu2srglGMc6ipNj'; //secret
+$config['FB_APP_ID'] = '117925104980946';
+$config['FB_APP_SECRET'] = '1f9d3d588b7057de3a847e10d675b8e7';
 
 /*
 |--------------------------------------------------------------------------

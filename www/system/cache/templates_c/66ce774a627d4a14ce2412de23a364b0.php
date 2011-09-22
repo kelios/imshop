@@ -76,4 +76,4 @@
     </p>
 
     <?php  echo form_csrf ();  ?>
-</form><?php $mabilis_ttl=1316526833; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\/templates/commerce/comments.tpl ?>
+</form><?php $mabilis_ttl=1316777946; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\/templates/commerce/comments.tpl ?>

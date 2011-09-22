@@ -130,4 +130,4 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
 
 </body>
 </html>
-<?php $mabilis_ttl=1316517450; $mabilis_last_modified=1289998704; //Y:\home\imshop\www\/templates/administrator/login.tpl ?>
+<?php $mabilis_ttl=1316777258; $mabilis_last_modified=1289998704; //Y:\home\imshop\www\/templates/administrator/login.tpl ?>

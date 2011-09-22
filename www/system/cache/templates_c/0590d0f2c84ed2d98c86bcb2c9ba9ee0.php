@@ -33,8 +33,10 @@
       <!-- BEGIN SLOGAN -->
       <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
     </div>
+
+    <!-- Hold this part in separate file which will be used for ajax requests. -->
     <div class="right" id="mycart">
-        <?php $this->include_tpl('shop/default/cart_data', 'Y:\home\imshop\www\templates\commerce'); ?> 
+        <?php $this->include_tpl('cart_data', 'Y:\home\imshop.ru\www\templates\commerce\shop\default'); ?>
     </div>
 
     <div id="topCurrency" align="right">
@@ -82,7 +84,7 @@
   <div id="main">
       <!-- BEGIN CONTEINER -->
     <div id="content">
-        <?php if(isset($content)){ echo $content; } ?>
+        <?php if(isset($shop_content)){ echo $shop_content; } ?> 
     </div>
     <!-- END CONTENT -->
     <div class="sp"></div>
@@ -106,4 +108,4 @@
 <!-- END FOOTER -->
 </body>
 </html>
-<?php $mabilis_ttl=1316778348; $mabilis_last_modified=1316691477; //Y:\home\imshop\www\/templates/commerce/main.tpl ?>
+<?php $mabilis_ttl=1316779850; $mabilis_last_modified=1303831608; //Y:\home\imshop.ru\www\templates\commerce\shop\default/main.tpl ?>

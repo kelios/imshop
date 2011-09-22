@@ -54,6 +54,26 @@ a {
 a:hover {
 	color:#e50c00;
 }
+.dos_list	{ float:left; background:#efefef; padding:17px 270px 0 300px; width:350px; overflow:hidden;}
+	.dos_list h2	{ font:16px arial; color:#000; padding:0; margin:0 0 15px 0;}
+	.dos_list p		{ padding-bottom:5px;}
+	.dos_list ul	{ overflow:hidden; list-style:none; margin-left:50px;}
+	.dos_list ul li	{ overflow:hidden; list-style:none; height:44px; margin-bottom:20px;}
+	.dos_list ul label	{ overflow:hidden; display:inline-block; cursor:pointer;}
+	.dos_list ul label input	{ overflow:hidden; margin:15px 20px 0 0 !important; float:left;}
+	.dos_list ul label span		{ display:inline-block; color:#8d8d8d; line-height:44px; padding-left:59px; background-position:0 50%; background-repeat:no-repeat;}
+	.dos_list ul .d0				{ height:auto;}
+	.dos_list ul .d0 label span		{ padding-left:0px; padding-top:15px; line-height:normal;}
+	.dos_list ul .d1 label span		{ background-image:url(../images/d1.png);}
+	.dos_list ul .d2 label span		{ background-image:url(../images/d2.png);}
+	.dos_list ul .d3 label span		{ background-image:url(../images/d3.png);}
+	.dos_list ul .d4 label span		{ background-image:url(../images/d4.png);}
+
+	.sn			{ overflow:hidden; margin-bottom:20px; padding-left:10px;}
+	.sn	a		{ display:inline-block; width:42px; height:42px; margin:0 55px; text-decoration:none;}	
+	.sn	a.face	{ background:url(../images/face.png) no-repeat 0 0;}	
+	.sn	a.tw		{ background:url(../images/tw.png) no-repeat 0 0;}	
+	.sn	a.vk	{ background:url(../images/vk.png) no-repeat 0 0;}	
 
 form .submit {
 	background:#f5f4f4;

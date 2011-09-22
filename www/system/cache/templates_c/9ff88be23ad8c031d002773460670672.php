@@ -34,7 +34,7 @@
       <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
     </div>
     <div class="right" id="mycart">
-        <?php $this->include_tpl('shop/default/cart_data', 'Y:\home\imshop\www\templates\commerce'); ?> 
+        <?php $this->include_tpl('shop/default/cart_data', 'Y:\home\imshop.ru\www\templates\commerce'); ?> 
     </div>
 
     <div id="topCurrency" align="right">
@@ -106,4 +106,4 @@
 <!-- END FOOTER -->
 </body>
 </html>
-<?php $mabilis_ttl=1316778348; $mabilis_last_modified=1316691477; //Y:\home\imshop\www\/templates/commerce/main.tpl ?>
+<?php $mabilis_ttl=1316779254; $mabilis_last_modified=1316691477; //Y:\home\imshop.ru\www\/templates/commerce/main.tpl ?>

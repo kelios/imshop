@@ -54,6 +54,42 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 	 */
 	protected $address;
 
+        /**
+	 * The value for the city field.
+	 * @var        string
+	 */
+	protected $city;
+
+          /**
+	 * The value for the street field.
+	 * @var        string
+	 */
+	protected $street;
+
+          /**
+	 * The value for the numberhome field.
+	 * @var        int
+	 */
+	protected $numberhome;
+
+          /**
+	 * The value for the surname field.
+	 * @var        string
+	 */
+	protected $surname;
+
+          /**
+	 * The value for the $additionalData field.
+	 * @var        string
+	 */
+	protected $additionalData;
+
+        /**
+	 * The value for the $profileimage field.
+	 * @var        string
+	 */
+	protected $profileimage;
+
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
 	 * by another object which falls in this transaction.
@@ -117,6 +153,62 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 	{
 		return $this->address;
 	}
+        
+        /**
+	 * Get the [city] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getCity()
+	{
+		return $this->city;
+	}
+        
+         /**
+	 * Get the [street] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getStreet()
+	{
+		return $this->street;
+	}
+        
+        /**
+	 * Get the [NumberHome] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getNumberHome()
+	{
+		return $this->numberhome;
+	}
+
+        /**
+	 * Get the [surname] column value.
+	 *
+	 * @return     string
+	 */
+	public function getSurname()
+	{
+		return $this->surname;
+	}
+
+         /**
+	 * Get the [AdditionalData] column value.
+	 *
+	 * @return     string
+	 */
+	public function getAdditionalData()
+	{
+		return $this->additionalData;
+	}
+
+        public function getProfileImage()
+        {
+		return $this->profileimage;
+	}
+
 
 	/**
 	 * Set the value of [id] column.
@@ -218,6 +310,124 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 		return $this;
 	} // setAddress()
 
+        /**
+	 * Set the value of [city] column.
+	 *
+	 * @param      string $v new value
+	 * @return     SUserProfile The current object (for fluent API support)
+	 */
+	public function setCity($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->city !== $v) {
+			$this->city = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::CITY;
+		}
+
+		return $this;
+	}//setCity()
+
+        /**
+	 * Set the value of [street] column.
+	 *
+	 * @param      string $v new value
+	 * @return     SUserProfile The current object (for fluent API support)
+	 */
+	public function setStreet($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->street !== $v) {
+			$this->street = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::STREET;
+		}
+
+		return $this;
+	}//setStreet()
+
+        /**
+	 * Set the value of [NumberHome] column.
+	 *
+	 * @param      string $v new value
+	 * @return     SUserProfile The current object (for fluent API support)
+	 */
+	public function setNumberHome($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->numberhome !== $v) {
+			$this->numberhome = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::NUMBERHOME;
+		}
+
+		return $this;
+	}//setNumberHome()
+
+       /**
+	 * Set the value of [surname] column.
+	 *
+	 * @param      string $v new value
+	 * @return     SUserProfile The current object (for fluent API support)
+	 */
+	public function setSurname($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->surname !== $v) {
+			$this->surname = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::SURNAME;
+		}
+
+		return $this;
+	}//setSurname()
+
+        /**
+	 * Set the value of [AdditionalData] column.
+	 *
+	 * @param      string $v new value
+	 * @return     SUserProfile The current object (for fluent API support)
+	 */
+	public function setAdditionalData($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->additionalData !== $v) {
+			$this->additionalData = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::ADDITIONALDATA;
+		}
+
+		return $this;
+	}//setAdditionalData()
+
+        public function setProfileImage($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->profileimage !== $v) {
+			$this->profileimage = $v;
+			$this->modifiedColumns[] = SUserProfilePeer::PROFILEIMAGE;
+		}
+
+		return $this;
+	}//setProfileImage()
+
+
+
+
+
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
@@ -255,6 +465,12 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 			$this->name = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
 			$this->phone = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->address = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+                        $this->city = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+                        $this->street = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+                        $this->numberhome = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+                        $this->surname = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+                        $this->additionalData = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+                        $this->profileimage = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -263,7 +479,7 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 				$this->ensureConsistency();
 			}
 
-			return $startcol + 5; // 5 = SUserProfilePeer::NUM_COLUMNS - SUserProfilePeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 11; // 10 = SUserProfilePeer::NUM_COLUMNS - SUserProfilePeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating SUserProfile object", $e);
@@ -577,6 +793,24 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 			case 4:
 				return $this->getAddress();
 				break;
+                        case 5:
+				return $this->getCity();
+				break;
+                        case 6:
+				return $this->getStreet();
+				break;
+                        case 7:
+				return $this->getNumberHome();
+				break;
+                        case 8:
+				return $this->getSurname();
+				break;
+                        case 9:
+				return $this->getAdditionalData();
+				break;
+                        case 10:
+				return $this->getProfileImage();
+				break;
 			default:
 				return null;
 				break;
@@ -605,6 +839,14 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 			$keys[2] => $this->getName(),
 			$keys[3] => $this->getPhone(),
 			$keys[4] => $this->getAddress(),
+                        $keys[5] => $this->getCity(),
+                        $keys[6] => $this->getStreet(),
+                        $keys[7] => $this->getNumberHome(),
+                        $keys[8] => $this->getSurname(),
+                        $keys[9] => $this->getAdditionalData(),
+                        $keys[10] => $this->getProfileImage(),
+
+
 		);
 		return $result;
 	}
@@ -651,6 +893,24 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 			case 4:
 				$this->setAddress($value);
 				break;
+                        case 5:
+				$this->setCity($value);
+				break;
+                        case 6:
+				$this->setStreet($value);
+				break;
+                        case 7:
+				$this->setNumberHome($value);
+				break;
+                        case 8:
+				$this->setSurname($value);
+				break;
+                        case 9:
+				$this->setAdditionalData($value);
+				break;
+                        case 10:
+				$this->setProfileImage($value);
+				break;
 		} // switch()
 	}
 
@@ -680,6 +940,12 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 		if (array_key_exists($keys[2], $arr)) $this->setName($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setPhone($arr[$keys[3]]);
 		if (array_key_exists($keys[4], $arr)) $this->setAddress($arr[$keys[4]]);
+                if (array_key_exists($keys[5], $arr)) $this->setCity($arr[$keys[5]]);
+                if (array_key_exists($keys[6], $arr)) $this->setStreet($arr[$keys[6]]);
+                if (array_key_exists($keys[7], $arr)) $this->setNumberHome($arr[$keys[7]]);
+                if (array_key_exists($keys[8], $arr)) $this->setSurname($arr[$keys[8]]);
+                if (array_key_exists($keys[9], $arr)) $this->setAdditionalData($arr[$keys[9]]);
+                if (array_key_exists($keys[10],$arr)) $this->setProfileImage($arr[$keys[10]]);
 	}
 
 	/**
@@ -697,6 +963,12 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 		if ($this->isColumnModified(SUserProfilePeer::PHONE)) $criteria->add(SUserProfilePeer::PHONE, $this->phone);
 		if ($this->isColumnModified(SUserProfilePeer::ADDRESS)) $criteria->add(SUserProfilePeer::ADDRESS, $this->address);
 
+                if ($this->isColumnModified(SUserProfilePeer::CITY)) $criteria->add(SUserProfilePeer::CITY, $this->city);
+		if ($this->isColumnModified(SUserProfilePeer::STREET)) $criteria->add(SUserProfilePeer::STREET, $this->street);
+		if ($this->isColumnModified(SUserProfilePeer::NUMBERHOME)) $criteria->add(SUserProfilePeer::NUMBERHOME, $this->numberhome);
+		if ($this->isColumnModified(SUserProfilePeer::SURNAME)) $criteria->add(SUserProfilePeer::SURNAME, $this->surname);
+		if ($this->isColumnModified(SUserProfilePeer::ADDITIONALDATA)) $criteria->add(SUserProfilePeer::ADDITIONALDATA, $this->additionalData);
+                if ($this->isColumnModified(SUserProfilePeer::PROFILEIMAGE)) $criteria->add(SUserProfilePeer::PROFILEIMAGE, $this->profileimage);
 		return $criteria;
 	}
 
@@ -762,6 +1034,13 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 		$copyObj->setPhone($this->phone);
 		$copyObj->setAddress($this->address);
 
+                $copyObj->setCity($this->City);
+                $copyObj->setStreet($this->Street);
+                $copyObj->setNumberHome($this->NumberHome);
+                $copyObj->setSurname($this->Surname);
+                $copyObj->setAdditionalData($this->AdditionalData);
+                $copyObj->setprofileimage($this->profileimage);
+
 		$copyObj->setNew(true);
 		$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
 	}
@@ -814,6 +1093,14 @@ abstract class BaseSUserProfile extends ShopBaseObject  implements Persistent
 		$this->name = null;
 		$this->phone = null;
 		$this->address = null;
+
+                $this->City= null;
+                $this->Street= null;
+                $this->NumberHome= null;
+                $this->Surname= null;
+                $this->AdditionalData= null;
+                $this->profileimage= null;
+                
 		$this->alreadyInSave = false;
 		$this->alreadyInValidation = false;
 		$this->clearAllReferences();

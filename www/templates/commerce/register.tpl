@@ -66,4 +66,11 @@
 
 {form_csrf()}
 </form>
+<div class="dos_list">
+        <h2>Также вы можете войти на сайт с помощью:</h2>
+        <div class="sn">
+        <a href="{site_url('/auth/setUserFacebook')}"class="face">&nbsp;</a>
+        <a href="http://api.vkontakte.ru/oauth/authorize?client_id=2494304&scope=&redirect_uri={site_url('/auth/vk')}&response_type=code" class="vk">&nbsp;</a>
+        </div>
+</div>
 

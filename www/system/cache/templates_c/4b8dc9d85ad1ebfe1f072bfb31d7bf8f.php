@@ -22,4 +22,4 @@
 
     <?php  echo widget ('latest_news');  ?>
     <?php  echo widget ('recent_product_comments');  ?>
-</div><?php $mabilis_ttl=1316777734; $mabilis_last_modified=1307530898; //Y:\home\imshop\www\templates\commerce\shop\default/sidebar.tpl ?>
+</div><?php $mabilis_ttl=1316779845; $mabilis_last_modified=1307530898; //Y:\home\imshop.ru\www\templates\commerce\shop\default/sidebar.tpl ?>

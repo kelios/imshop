@@ -14,4 +14,4 @@
         <a href="javascript:history.back(-1);"><?php  echo lang ('history_back');  ?></a>
     </p>
 </div>
-<?php $mabilis_ttl=1316516942; $mabilis_last_modified=1306159638; //Y:\home\imshop\www\/templates/commerce/page_full.tpl ?>
+<?php $mabilis_ttl=1316777946; $mabilis_last_modified=1306159638; //Y:\home\imshop\www\/templates/commerce/page_full.tpl ?>

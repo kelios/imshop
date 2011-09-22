@@ -1,5 +1,5 @@
 
-<?php $this->include_tpl("profile_menu", 'Y:\home\imshop\www\templates\commerce\shop\default'); ?>
+<?php $this->include_tpl("profile_menu", 'Y:\home\imshop.ru\www\templates\commerce\shop\default'); ?>
 
 <div class="products_list">
     <table width="100%">
@@ -26,4 +26,4 @@
         <?php }} ?>
     </table>
 </div>
-<?php $mabilis_ttl=1316777317; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/profile.tpl ?>
+<?php $mabilis_ttl=1316779848; $mabilis_last_modified=1303831608; //Y:\home\imshop.ru\www\templates\commerce\shop\default/profile.tpl ?>

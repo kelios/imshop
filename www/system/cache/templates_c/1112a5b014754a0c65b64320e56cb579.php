@@ -62,4 +62,4 @@
         <a href="http://api.vkontakte.ru/oauth/authorize?client_id=2494304&scope=&redirect_uri=<?php  echo site_url ('/auth/vk');  ?>&response_type=code" class="vk">&nbsp;</a>
         </div>
 </div>
-<?php $mabilis_ttl=1316778348; $mabilis_last_modified=1316692534; //Y:\home\imshop\www\/templates/commerce/login.tpl ?>
+<?php $mabilis_ttl=1316779254; $mabilis_last_modified=1316692534; //Y:\home\imshop.ru\www\/templates/commerce/login.tpl ?>

@@ -1,4 +1,4 @@
-<?php include ('Y:\home\imshop\www\application\libraries\mabilis/functions/func.counter.php');  ?>
+<?php include ('Y:\home\imshop.ru\www\application\libraries\mabilis/functions/func.counter.php');  ?>
     <script type="text/javascript">
     $(window).load(function()
     { 
@@ -19,7 +19,7 @@
 
 
 <?php # Display sidebar.tpl # ?>
-<?php $this->include_tpl('sidebar', 'Y:\home\imshop\www\templates\commerce\shop\default'); ?>
+<?php $this->include_tpl('sidebar', 'Y:\home\imshop.ru\www\templates\commerce\shop\default'); ?>
 
 <div class="products_list">
 
@@ -109,4 +109,4 @@
     <!-- END NEW -->
 
 </div>
-<?php $mabilis_ttl=1316777734; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\templates\commerce\shop\default/start_page.tpl ?>
+<?php $mabilis_ttl=1316779844; $mabilis_last_modified=1303831608; //Y:\home\imshop.ru\www\templates\commerce\shop\default/start_page.tpl ?>

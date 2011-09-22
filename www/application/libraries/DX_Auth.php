@@ -447,7 +447,7 @@ class DX_Auth {
 		// Set session data array
 		$user = array(
 			'DX_user_id'			=> $data->id,
-			'DX_vk_id'				=> isset($data->vk_id)?$data->vk_id:0,
+			'DX_vk_id'			=> isset($data->vk_id)?$data->vk_id:0,
 			'DX_username'			=> $data->username,
 			'DX_role_id'			=> $data->role_id,
 			'DX_role_name'			=> $role_data['role_name'],

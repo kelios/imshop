@@ -64,6 +64,12 @@ class Users extends CI_Model
 		return $this->db->get($this->_table);
 	}
 
+        function get_user_vk($user_id)
+	{
+		$this->db->where('vk_id', $user_id);
+		return $this->db->get($this->_table);
+	}
+
 	function check_ban($user_id)
 	{
 		$this->db->select('1', FALSE);

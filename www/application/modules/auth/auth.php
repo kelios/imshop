@@ -24,6 +24,7 @@ class Auth extends MY_Controller
         $this->load->library('Form_validation');
         $this->load->library('DX_Auth');
         $this->form_validation->CI =& $this;
+        
 	}
 
 	public function index()
@@ -157,8 +158,9 @@ public function editProfile($photo,$email,$username)
 
         public function setUserFacebook()
         {
-            $this->app_id =$this->ci->config->item('FB_APP_ID');// "267585903271931";
-            $this->app_secret =$this->ci->config->item('FB_APP_SECRET');// "21d02f1c2045bd356d1d6df6c30c825a";
+            $ci =& get_instance();
+            $this->app_id =$ci->config->item('FB_APP_ID');// "267585903271931";
+            $this->app_secret =$ci->config->item('FB_APP_SECRET');// "21d02f1c2045bd356d1d6df6c30c825a";
             $my_url = site_url('auth/setUserFacebook');
             $code = $_REQUEST["code"];
 
@@ -222,16 +224,7 @@ public function editProfile($photo,$email,$username)
         
         
 
-	public function setUserVkontakte() {
-		$url = "https://api.vkontakte.ru/oauth/access_token?client_id=2464640&client_secret=Se5gKNMpGj198BC9O8EY&code=" . $_REQUEST['code'];
-		$response = json_decode(@file_get_contents($url));
-		if ($response->error) {
-			die('�?ли какая-то другая обработка ошибки');
-		}
-		$arrResponse = json_decode(@file_get_contents("https://api.vkontakte.ru/method/getProfiles?uid={$response->user_id}&access_token={$response->access_token}&fields=photo"))->response;
-
-	 }
-
+	
 	function recaptcha_check()
 	{
       //  ($hook = get_hook('auth_recaptcha_check')) ? eval($hook) : NULL;
@@ -249,10 +242,13 @@ public function editProfile($photo,$email,$username)
 
 	
 	function vk() {
-	
+        $ci =& get_instance();
+        
+	$this->VK_APP_ID = $ci->config->item('VK_APP_ID');
+	$this->VK_APP_PASSWORD = $ci->config->item('VK_APP_PASSWORD');
 		if ($this->input->get('code')) {
 			$code = $this->input->get('code'); 
-			$url = "https://api.vkontakte.ru/oauth/access_token?client_id=2464640&client_secret=Se5gKNMpGj198BC9O8EY&code=" . $code;
+			$url = "https://api.vkontakte.ru/oauth/access_token?client_id=".$this->VK_APP_ID."&client_secret=".$this->VK_APP_PASSWORD."&code=" . $code;
 			$fgcontent = @file_get_contents($url);
 			//$fgcontent = '{"access_token":"65cf77282bc8510665b287259365971ca5f65b265b2872536ffa38fe804eda3","expires_in":85789,"user_id":8253453}';
 			

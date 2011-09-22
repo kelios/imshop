@@ -42,6 +42,13 @@ class SUserProfileTableMap extends TableMap {
 		$this->addColumn('NAME', 'Name', 'VARCHAR', false, 255, null);
 		$this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 255, null);
 		$this->addColumn('ADDRESS', 'Address', 'VARCHAR', false, 255, null);
+
+                $this->addColumn('CITY', 'City', 'VARCHAR', false, 255, null);
+		$this->addColumn('STREET', 'Street', 'VARCHAR', false, 255, null);
+                $this->addColumn('NUMBERHOME', 'Numberhome', 'INTEGER', false, null, null);
+		$this->addColumn('SURNAME', 'Surname', 'VARCHAR', false, 255, null);
+		$this->addColumn('ADDITIONALDATA', 'AdditionalData', 'VARCHAR', false, 255, null);
+                $this->addColumn('PROFILEIMAGE', 'profileimage', 'VARCHAR', false, 255, null);
 		// validators
 	} // initialize()
 

@@ -8,4 +8,4 @@
         <li><a href="<?php if(isset($rename)){ echo $rename; } ?>logout">Выход</a></li>
 	</ul>
 </div>
-<?php $mabilis_ttl=1316777317; $mabilis_last_modified=1316432549; //Y:\home\imshop\www\templates\commerce\shop\default/profile_menu.tpl ?>
+<?php $mabilis_ttl=1316779850; $mabilis_last_modified=1316432549; //Y:\home\imshop.ru\www\templates\commerce\shop\default/profile_menu.tpl ?>

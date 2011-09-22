@@ -26,7 +26,7 @@ abstract class BaseSUserProfilePeer {
 	const TM_CLASS = 'SUserProfileTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 11;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -46,6 +46,23 @@ abstract class BaseSUserProfilePeer {
 	/** the column name for the ADDRESS field */
 	const ADDRESS = 'shop_user_profile.ADDRESS';
 
+        /** the column name for the ADDRESS field */
+	const CITY = 'shop_user_profile.CITY';
+
+        /** the column name for the ADDRESS field */
+	const STREET = 'shop_user_profile.STREET';
+
+        /** the column name for the ADDRESS field */
+	const NUMBERHOME = 'shop_user_profile.NUMBERHOME';
+
+        /** the column name for the ADDRESS field */
+	const SURNAME = 'shop_user_profile.SURNAME';
+
+        /** the column name for the ADDRESS field */
+	const ADDITIONALDATA = 'shop_user_profile.ADDITIONALDATA';
+
+        /** the column name for the ADDRESS field */
+	const PROFILEIMAGE = 'shop_user_profile.PROFILEIMAGE';
 	/** The default string format for model objects of the related table **/
 	const DEFAULT_STRING_FORMAT = 'YAML';
 	
@@ -65,12 +82,12 @@ abstract class BaseSUserProfilePeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'Name', 'Phone', 'Address', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'name', 'phone', 'address', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::NAME, self::PHONE, self::ADDRESS, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'USER_ID', 'NAME', 'PHONE', 'ADDRESS', ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'name', 'phone', 'address', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'Name', 'Phone', 'Address', 'City', 'Street','Numberhome','Surname','AdditionalData','ProfileImage' ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'name', 'phone', 'address','city', 'street','numberhome','surname','additionalData','profileimage' ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::NAME, self::PHONE, self::ADDRESS, self::CITY, self::STREET,self::NUMBERHOME,self::SURNAME,self::ADDITIONALDATA, self::PROFILEIMAGE),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID', 'USER_ID', 'NAME', 'PHONE', 'ADDRESS','CITY','STREET','NUMBERHOME','SURNAME','ADDITIONALDATA','PROFILEIMAGE' ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'name', 'phone', 'address', 'city', 'street','numberhome','surname','additionalData','profileimage'),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10 )
 	);
 
 	/**
@@ -80,12 +97,12 @@ abstract class BaseSUserProfilePeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'Name' => 2, 'Phone' => 3, 'Address' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'name' => 2, 'phone' => 3, 'address' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::NAME => 2, self::PHONE => 3, self::ADDRESS => 4, ),
-		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'USER_ID' => 1, 'NAME' => 2, 'PHONE' => 3, 'ADDRESS' => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'name' => 2, 'phone' => 3, 'address' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'Name' => 2, 'Phone' => 3, 'Address' => 4,'City'=> 5, 'Street'=> 6,'Numberhome'=> 7,'Surname'=> 8,'AdditionalData'=> 9, 'ProfileImage'=> 10 ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'name' => 2, 'phone' => 3, 'address' => 4, 'city'=> 5, 'street'=> 6,'numberhome'=> 7,'surname'=> 8,'additionalData'=> 9,'profileimage'=> 10 ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::NAME => 2, self::PHONE => 3, self::ADDRESS => 4, self::CITY=> 5, self::STREET=> 6,self::NUMBERHOME=> 7,self::SURNAME=> 8,self::ADDITIONALDATA=> 9, self::PROFILEIMAGE=> 10),
+		BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'USER_ID' => 1, 'NAME' => 2, 'PHONE' => 3, 'ADDRESS' => 4,'CITY'=> 5,'STREET'=> 6,'NUMBERHOME'=> 7,'SURNAME'=> 8,'ADDITIONALDATA'=> 9,'PROFILEIMAGE'=> 10 ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'name' => 2, 'phone' => 3, 'address' => 4,'city'=> 5, 'street'=> 6,'numberhome'=> 7,'surname'=> 8,'additionalData'=> 9,'profileimage'=> 10),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4,5, 6, 7, 8, 9, 10 )
 	);
 
 	/**
@@ -162,13 +179,27 @@ abstract class BaseSUserProfilePeer {
 			$criteria->addSelectColumn(SUserProfilePeer::NAME);
 			$criteria->addSelectColumn(SUserProfilePeer::PHONE);
 			$criteria->addSelectColumn(SUserProfilePeer::ADDRESS);
+
+                        $criteria->addSelectColumn(SUserProfilePeer::CITY);
+			$criteria->addSelectColumn(SUserProfilePeer::STREET);
+			$criteria->addSelectColumn(SUserProfilePeer::NUMBERHOME);
+			$criteria->addSelectColumn(SUserProfilePeer::SURNAME);
+			$criteria->addSelectColumn(SUserProfilePeer::ADDITIONALDATA);
+                        $criteria->addSelectColumn(SUserProfilePeer::PROFILEIMAGE);
 		} else {
 			$criteria->addSelectColumn($alias . '.ID');
 			$criteria->addSelectColumn($alias . '.USER_ID');
 			$criteria->addSelectColumn($alias . '.NAME');
 			$criteria->addSelectColumn($alias . '.PHONE');
 			$criteria->addSelectColumn($alias . '.ADDRESS');
-		}
+
+                        $criteria->addSelectColumn($alias . '.CITY');
+			$criteria->addSelectColumn($alias . '.STREET');
+			$criteria->addSelectColumn($alias . '.NUMBERHOME');
+			$criteria->addSelectColumn($alias . '.SURNAME');
+			$criteria->addSelectColumn($alias . '.ADDITIONALDATA');
+                        $criteria->addSelectColumn($alias . '.PROFILEIMAGE');
+                  }
 	}
 
 	/**
