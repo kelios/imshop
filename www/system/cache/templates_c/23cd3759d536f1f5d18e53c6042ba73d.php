@@ -55,4 +55,4 @@
 
 <?php  echo form_csrf ();  ?>
 </form>
-<?php $mabilis_ttl=1316517722; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\/templates/commerce/login.tpl ?>
+<?php $mabilis_ttl=1316773492; $mabilis_last_modified=1303831608; //Y:\home\imshop\www\/templates/commerce/login.tpl ?>

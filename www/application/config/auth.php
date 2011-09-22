@@ -11,6 +11,10 @@
 
 $config['DX_website_name'] = 'Image CMS';
 $config['DX_webmaster_email'] = 'webmaster@localhost';
+$config['VK_APP_ID'] = '2464640';
+$config['VK_APP_PASSWORD'] = 'Se5gKNMpGj198BC9O8EY'; //secret
+$config['FB_APP_ID'] = '267585903271931';
+$config['FB_APP_SECRET'] = '21d02f1c2045bd356d1d6df6c30c825a';
 
 /*
 |--------------------------------------------------------------------------

@@ -157,9 +157,8 @@ public function editProfile($photo,$email,$username)
 
         public function setUserFacebook()
         {
-            //$this->redirect_uri = site_url('auth/setUserFacebook');
-            $app_id = "267585903271931";
-            $app_secret = "21d02f1c2045bd356d1d6df6c30c825a";
+            $this->app_id =$this->ci->config->item('FB_APP_ID');// "267585903271931";
+            $this->app_secret =$this->ci->config->item('FB_APP_SECRET');// "21d02f1c2045bd356d1d6df6c30c825a";
             $my_url = site_url('auth/setUserFacebook');
             $code = $_REQUEST["code"];
 
@@ -168,15 +167,15 @@ public function editProfile($photo,$email,$username)
            if(empty($code)) {
              $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
              $dialog_url = "http://www.facebook.com/dialog/oauth?client_id="
-           . $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
+           . $this->app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
            . $_SESSION['state'];
 
                  echo("<script> top.location.href='" . $dialog_url . "'</script>");
                }
 
             $token_url = "https://graph.facebook.com/oauth/access_token?"
-               . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
-               . "&client_secret=" . $app_secret . "&code=" . $code."&scope=email,read_stream";
+               . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($my_url)
+               . "&client_secret=" . $this->app_secret . "&code=" . $code."&scope=email,read_stream";
             $response = json_decode(file_get_contents($token_url));
 
                  $response = file_get_contents($token_url);
